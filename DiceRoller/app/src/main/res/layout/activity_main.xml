@@ -17,14 +17,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.527" />
+        app:layout_constraintVertical_bias="0.451" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonRoll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="155dp"
-        android:layout_marginTop="424dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="540dp"
         android:text="@string/roll_button"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -44,9 +44,10 @@
         android:id="@+id/guessMessageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:text="@string/guess_message"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/messageTextView" />
 
@@ -55,9 +56,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="60dp"
-        android:layout_marginTop="109dp"
+        android:layout_marginTop="110dp"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/guessMessageTextView" />
+
+    <ImageView
+        android:id="@+id/diceImageView"
+        android:layout_width="133dp"
+        android:layout_height="141dp"
+        android:layout_marginStart="137dp"
+        android:layout_marginTop="365dp"
+        android:contentDescription="@string/des_image"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/dice"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
