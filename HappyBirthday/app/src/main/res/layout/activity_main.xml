@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/regards_Message"
+        android:text="@string/regards_message"
         android:textSize="34sp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
