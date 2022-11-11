@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Dice Roller</string>
     <string name="roll_button">Roll</string>
-    <string name="roll_message">Press Roll</string>
+    <string name="roll_message">Press Roll!</string>
+    <string name="welcome_message">Let\'s Play a Game!</string>
+    <string name="guess_message">Check if you land on the Lucky Number</string>
 </resources>
