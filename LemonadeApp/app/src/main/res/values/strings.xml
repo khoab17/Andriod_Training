@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Lemonade App</string>
+    <string name="welcome_message">Click to select a lemon!</string>
+    <string name="lemon_message">Click to juice the lemon!</string>
+    <string name="tree_image_des">This is a image of a lemon tree</string>
+    <string name="juice_message">Click to drink lemonade!</string>
+</resources>
