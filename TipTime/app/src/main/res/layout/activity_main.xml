@@ -57,6 +57,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/not_okay" />
+        <RadioButton
+            android:id="@+id/manual_percent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/manual_tip"
+            />
     </RadioGroup>
 
     <TextView
