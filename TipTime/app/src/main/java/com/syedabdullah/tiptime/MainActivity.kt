@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import com.syedabdullah.tiptime.databinding.ActivityMainBinding
 
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     //function that calculate tip
     private fun calculateTip(){
-        val costOfService: Double=(binding.costOfService.text.toString()).toDouble()
+        val costOfService: Double = (binding.costOfService.text.toString()).toDoubleOrNull() ?: return
         val tipPercentage:Double=when(binding.tipOptions.checkedRadioButtonId){
             R.id.option_twenty_percent->0.2
             R.id.option_eighteen_percent->0.18
@@ -43,13 +44,19 @@ class MainActivity : AppCompatActivity() {
         }
         val peoples:Int=(binding.numberOfPersonCount.text.toString()).toInt()
         var tip:Double = costOfService.times(tipPercentage)
+
+        var result=(costOfService.times(tipPercentage)+costOfService).div(peoples)
+
         if(binding.roundUpTip.isChecked) {
-            tip=kotlin.math.ceil(tip)
+            result=kotlin.math.ceil(result)
         }
-        val result=tip.div(peoples).toString()
-        Log.d("Bug",result)
+
+        val tipResult:TextView=binding.tipResult
+        result.toString().also { tipResult.text=it }
+        Log.d("Bug",result.toString())
         Log.d("Id",binding.tipOptions.checkedRadioButtonId.toString())
     }
+
     //increment or decrement people count
     private fun peopleCount(flag:String){
         val personCountText=binding.numberOfPersonCount
