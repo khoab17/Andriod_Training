@@ -10,7 +10,8 @@
     <string name="number_of_people">Select number of People</string>
     <string name="calculate">Calculate</string>
     <string name="tip_amount">Tip Amount</string>
-    <string name="manual_tip">Insert Manually</string>
+    <string name="manual_tip">Your Choice</string>
+    <string name="manual_tip_hint">0-100 %</string>
     <string name="increment">+</string>
     <string name="decrement">-</string>
     <string name="one">1</string>

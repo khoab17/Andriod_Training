@@ -64,6 +64,17 @@
             android:text="@string/manual_tip"
             />
     </RadioGroup>
+    <EditText
+        android:id="@+id/insertManualTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/manual_tip_hint"
+        android:visibility="invisible"
+        android:inputType="number"
+        app:layout_constraintStart_toEndOf="@id/tip_options"
+        app:layout_constraintBottom_toTopOf="@id/number_of_person"
+
+        />
 
     <TextView
         android:id="@+id/number_of_person"
@@ -135,6 +146,7 @@
         android:textSize="20sp"
         android:text="@string/tip_amount"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculate_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
