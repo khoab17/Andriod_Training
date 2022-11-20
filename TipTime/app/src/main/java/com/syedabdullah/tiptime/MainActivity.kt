@@ -40,6 +40,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //manual tip null check
+    private fun manualCheck():Double{
+        val res=binding.insertManualTip.text.toString().toIntOrNull()
+        return res?.toDouble()?.div(100) ?: 0.0
+
+    }
+
     //function that calculate tip
     private fun calculateTip(){
         val costOfService: Double = (binding.costOfService.text.toString()).toDoubleOrNull() ?: return
@@ -48,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             R.id.option_eighteen_percent->0.18
             R.id.option_fifteen_percent->0.15
             R.id.option_ten_percent->0.10
-            R.id.manual_percent->((binding.insertManualTip.text.toString()).toDouble()).div(100)
+            R.id.manual_percent->manualCheck()
             else->0.0
         }
         val peoples:Int=(binding.numberOfPersonCount.text.toString()).toInt()
