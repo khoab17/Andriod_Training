@@ -9,10 +9,12 @@
     <string name="round_up_tip">Round up tip?</string>
     <string name="number_of_people">Select number of People</string>
     <string name="calculate">Calculate</string>
-    <string name="tip_amount">Tip Amount</string>
     <string name="manual_tip">Your Choice</string>
-    <string name="manual_tip_hint">0-100 %</string>
+    <string name="manual_tip_hint">0–100 %</string>
     <string name="increment">+</string>
     <string name="decrement">-</string>
     <string name="one">1</string>
+    <string name="tip_welcome_message">Calculate your bill and tip.</string>
+    <string name="tip_amount">Total bill: %s and Per Person cost %s \n total tip: %s</string>
+    <string name="empty_cost_of_service">Provide value for Cost of Service</string>
 </resources>

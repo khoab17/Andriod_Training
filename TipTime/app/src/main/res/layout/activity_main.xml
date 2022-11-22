@@ -17,7 +17,8 @@
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="phone"/>
     <TextView
         android:id="@+id/service_question"
         android:layout_width="wrap_content"
@@ -73,6 +74,7 @@
         android:inputType="number"
         app:layout_constraintStart_toEndOf="@id/tip_options"
         app:layout_constraintBottom_toTopOf="@id/number_of_person"
+        android:autofillHints=""
 
         />
 
@@ -144,7 +146,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
-        android:text="@string/tip_amount"
+        android:text="@string/tip_welcome_message"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/calculate_button" />
