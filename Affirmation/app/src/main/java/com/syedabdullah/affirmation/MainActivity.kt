@@ -12,9 +12,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val myDataset=DataSource().loadAffirmation()
+        //val myDataset= DataSource().loadAffirmation()
+        val studentData=DataSource().getStudentData()
+
         val recyclerView=findViewById<RecyclerView>(R.id.rv_affirmation)
-        recyclerView.adapter=ItemAdapter(this,myDataset)
+        recyclerView.adapter=ItemAdapter(this,studentData)
         recyclerView.setHasFixedSize(true)
     }
 }
