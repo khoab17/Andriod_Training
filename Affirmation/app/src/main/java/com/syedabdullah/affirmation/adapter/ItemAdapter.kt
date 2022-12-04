@@ -23,6 +23,7 @@ class ItemAdapter(private val context:Context ,private val dataset:List<Student>
         holder.textViewID.text="Student ID: ${dataset[position].studentId.toString()}"
         holder.textViewName.text="Name: ${dataset[position].name}"
         holder.textViewBloodGroup.text="Blood Group: ${dataset[position].bloodGroup}"
+
     }
 
     override fun getItemCount(): Int {
