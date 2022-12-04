@@ -1,4 +1,4 @@
 package com.syedabdullah.affirmation.model
 
-class Affirmation(val stringResourceId:Int) {
+data class Affirmation(val stringResourceId:Int) {
 }
