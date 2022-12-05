@@ -1,4 +1,6 @@
 package com.syedabdullah.affirmation.model
 
-data class Student(val studentId:Int, val name:String,val bloodGroup:String) {
+import androidx.annotation.DrawableRes
+
+data class Student(val studentId:Int, val name:String,val bloodGroup:String,@DrawableRes val imageResource:Int) {
 }

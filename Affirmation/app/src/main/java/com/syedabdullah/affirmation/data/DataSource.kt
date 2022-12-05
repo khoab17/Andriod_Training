@@ -22,27 +22,26 @@ class DataSource(){
 
     fun getStudentData():List<Student>{
         return listOf(
-            Student(1,"Abir khan","A+"),
-            Student(1,"Abir khan","B+"),
-            Student(2,"Abir khan","O+"),
-            Student(3,"Adam Sandler","O+"),
-            Student(4,"Jennifer","B+"),
-            Student(5,"Adam Kane","A-"),
-            Student(6,"Tamim","B-"),
-            Student(7,"James Milner","A-"),
-            Student(8,"David Mill","A+"),
-            Student(9,"Kyle Walker","O+"),
-            Student(10,"Robert","O+"),
-            Student(11,"James Madison","A-"),
-            Student(12,"Tim paine","B+"),
-            Student(13,"Tim Cook","B+"),
-            Student(14,"Robert","A+"),
-            Student(15,"Tim Cahill","B+"),
-            Student(16,"James Madison","A-"),
-            Student(17,"Tim paine","B+"),
-            Student(18,"Tim Cook","B+"),
-            Student(19,"Robert","A+"),
-            Student(20,"Tim Cahill","B+")
+            Student(1,"Abir khan","A+",R.drawable.student01),
+            Student(2,"Abir khan","O+",R.drawable.student03),
+            Student(3,"Adam Sandler","O+",R.drawable.student04),
+            Student(4,"Jennifer","B+",R.drawable.student01),
+            Student(5,"Adam Kane","A-",R.drawable.student02),
+            Student(6,"Tamim","B-",R.drawable.student03),
+            Student(7,"James Milner","A-",R.drawable.student04),
+            Student(8,"David Mill","A+",R.drawable.student01),
+            Student(9,"Kyle Walker","O+",R.drawable.student02),
+            Student(10,"Robert","O+",R.drawable.student03),
+            Student(11,"James Madison","A-",R.drawable.student04),
+            Student(12,"Tim paine","B+",R.drawable.student01),
+            Student(13,"Tim Cook","B+",R.drawable.student02),
+            Student(14,"Robert","A+",R.drawable.student03),
+            Student(15,"Tim Cahill","B+",R.drawable.student04),
+            Student(16,"James Madison","A-",R.drawable.student01),
+            Student(17,"Tim paine","B+",R.drawable.student02),
+            Student(18,"Tim Cook","B+",R.drawable.student03),
+            Student(19,"Robert","A+",R.drawable.student04),
+            Student(20,"Tim Cahill","B+",R.drawable.student01)
         )
     }
 }
