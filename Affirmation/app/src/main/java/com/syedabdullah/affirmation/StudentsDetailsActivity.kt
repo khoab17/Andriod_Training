@@ -16,12 +16,14 @@ class StudentsDetailsActivity : AppCompatActivity() {
         val id: TextView?=findViewById(R.id.tv_student_id)
         val bloodGroup: TextView?=findViewById(R.id.tv_blood_group)
         val imageView: ImageView=findViewById(R.id.iv_student_photo)
+        val bio:TextView?=findViewById(R.id.tv_bio_details)
 
         Log.d("test","student activity: $id")
 
         id?.text=getString(R.string.student_id,bundle?.getString("student_id"))
         name?.text=getString(R.string.student_name,  bundle?.getString("student_name"))
         bloodGroup?.text=getString(R.string.student_blood_group,bundle?.getString("student_blood_group"))
+        bio?.text=bundle?.getString("bio")
         bundle?.getString("image_resource")?.let { imageView?.setImageResource(it.toInt()) }
     }
 }

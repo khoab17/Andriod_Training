@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
@@ -30,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/student_id"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/iv_student_photo"
@@ -41,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/student_name"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_student_id" />
@@ -51,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/student_blood_group"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_student_name" />
@@ -60,11 +61,26 @@
         android:id="@+id/tv_bio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/student_bio"
-        android:textSize="24sp"
         android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/bio_title"
+        android:textSize="22sp"
         app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/tv_blood_group" />
+
+  <ScrollView
+      android:id="@+id/sv_bio"
+      android:layout_width="match_parent"
+      android:layout_height="180dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/tv_bio">
+      <TextView
+          android:id="@+id/tv_bio_details"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          tools:text="@string/bio_details"
+          android:textSize="18sp"
+          app:layout_constraintTop_toBottomOf="@+id/tv_bio" />
+  </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

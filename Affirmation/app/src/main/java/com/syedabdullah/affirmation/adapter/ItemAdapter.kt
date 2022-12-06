@@ -36,8 +36,8 @@ class ItemAdapter(private val context:Context ,private val dataset:List<Student>
             intent.putExtra("student_name",dataset[position].name)
             intent.putExtra("student_blood_group",dataset[position].bloodGroup)
             intent.putExtra("image_resource",(dataset[position].imageResource).toString())
-            intent.putExtra("bio",dataset[position].bio)
-            Log.d("test",dataset[position].studentId.toString())
+            intent.putExtra("bio",context.getString(dataset[position].bio) )
+            //Log.d("test",context.getString())
             context.startActivity(intent)
         }
     }
@@ -51,7 +51,6 @@ class ItemAdapter(private val context:Context ,private val dataset:List<Student>
         val textViewName:TextView=view.findViewById(R.id.tv_name)
         val textViewBloodGroup:TextView=view.findViewById(R.id.tv_blood_group)
         val imageView:ImageView=view.findViewById(R.id.iv_photo)
-        val bio:TextView=view.findViewById(R.id.tv_bio)
     }
 
 }
