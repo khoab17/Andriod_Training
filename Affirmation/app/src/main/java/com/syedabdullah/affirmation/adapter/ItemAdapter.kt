@@ -1,7 +1,7 @@
 package com.syedabdullah.affirmation.adapter
 
-import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.syedabdullah.affirmation.R
+import com.syedabdullah.affirmation.StudentsDetailsActivity
 import com.syedabdullah.affirmation.model.Student
 
 class ItemAdapter(private val context:Context ,private val dataset:List<Student>):
@@ -22,13 +23,23 @@ class ItemAdapter(private val context:Context ,private val dataset:List<Student>
         return ItemViewHolder(adapterLayout)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.textViewID.text="Student ID: ${dataset[position].studentId.toString()}"
-        holder.textViewName.text="Name: ${dataset[position].name}"
-        holder.textViewBloodGroup.text="Blood Group: ${dataset[position].bloodGroup}"
+        holder.textViewID.text=context.getString(R.string.student_id,dataset[position].studentId.toString())
+        holder.textViewName.text=context.getString(R.string.student_name,dataset[position].name)
+        holder.textViewBloodGroup.text=context.getString(R.string.student_blood_group,dataset[position].bloodGroup)
         holder.imageView.setImageResource(dataset[position].imageResource)
         Log.d("Adapter",dataset[position].toString())
+
+        holder.imageView.setOnClickListener{
+            val intent= Intent(context,StudentsDetailsActivity::class.java)
+            intent.putExtra("student_id",dataset[position].studentId.toString())
+            intent.putExtra("student_name",dataset[position].name)
+            intent.putExtra("student_blood_group",dataset[position].bloodGroup)
+            intent.putExtra("image_resource",(dataset[position].imageResource).toString())
+            intent.putExtra("bio",dataset[position].bio)
+            Log.d("test",dataset[position].studentId.toString())
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -40,6 +51,7 @@ class ItemAdapter(private val context:Context ,private val dataset:List<Student>
         val textViewName:TextView=view.findViewById(R.id.tv_name)
         val textViewBloodGroup:TextView=view.findViewById(R.id.tv_blood_group)
         val imageView:ImageView=view.findViewById(R.id.iv_photo)
+        val bio:TextView=view.findViewById(R.id.tv_bio)
     }
 
 }
