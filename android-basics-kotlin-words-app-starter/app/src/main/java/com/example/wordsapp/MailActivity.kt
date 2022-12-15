@@ -19,11 +19,11 @@ class MailActivity : AppCompatActivity() {
         val sendButton:Button=findViewById(R.id.btn_send)
 
         sendButton.setOnClickListener{
-            var addresses:Array<String> = arrayOf()
+            val addresses:Array<String>
             val listOfMails=sendTo.text.toString().split(" ",",",";")
-            Log.d("check",listOfMails.toString())
+            //Log.d("check",listOfMails.toString())
             addresses=listOfMails.toTypedArray()
-            Log.d("check", "Array:${addresses.contentToString()}")
+           // Log.d("check", "Array:${addresses.contentToString()}")
 
             composeEmail(addresses,subject.text.toString(), mailBody.text.toString())
         }
