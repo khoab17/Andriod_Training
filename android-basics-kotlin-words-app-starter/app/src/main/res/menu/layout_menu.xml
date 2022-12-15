@@ -8,6 +8,9 @@
 
     <item android:id="@+id/action_send_mail"
         android:title="@string/send_email"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_set_alarm"
+        android:title="@string/set_alarm"
+        app:showAsAction="never" />
 </menu>

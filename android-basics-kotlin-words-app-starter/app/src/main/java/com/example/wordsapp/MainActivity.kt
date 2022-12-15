@@ -79,6 +79,11 @@ class MainActivity : AppCompatActivity() {
                 this.startActivity(intent)
                 return true
             }
+            R.id.action_set_alarm->{
+                val intent=Intent(this, AlarmActivity::class.java)
+                this.startActivity(intent)
+                return true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

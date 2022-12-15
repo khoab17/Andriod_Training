@@ -20,4 +20,9 @@
     <string name="look_up_word">Look up word in a Browser Search</string>
     <string name="look_up_words">Show Stored Words</string>
     <string name="send_email">Send Email</string>
+    <string name="minutes">Minutes</string>
+    <string name="hour">Hour</string>
+    <string name="set">Set</string>
+    <string name="set_alarm">Set Alarm</string>
+    <string name="message">Message</string>
 </resources>
