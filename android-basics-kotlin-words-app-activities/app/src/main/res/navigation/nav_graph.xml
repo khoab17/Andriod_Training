@@ -31,7 +31,8 @@
         android:name="com.example.wordsapp.Details"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" >
-        <argument android:name="word"
+        <argument
+            android:name="word"
             app:argType="string"/>
     </fragment>
 </navigation>

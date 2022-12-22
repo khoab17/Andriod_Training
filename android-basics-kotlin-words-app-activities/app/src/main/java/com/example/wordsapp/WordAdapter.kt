@@ -90,7 +90,7 @@ class WordAdapter(private val letterId: String, context: Context) :
 //            val queryUrl: Uri = Uri.parse("${Constants.SEARCH_PREFIX}${item}")
 //            val intent = Intent(Intent.ACTION_VIEW, queryUrl)
 //            context.startActivity(intent)
-            val action =WordListFragmentDirections.actionWordToDetails(word = "${Constants.SEARCH_PREFIX}${item}")
+            val action =WordListFragmentDirections.actionWordToDetails(word = item)
             holder.view.findNavController().navigate(action)
         }
     }

@@ -1,12 +1,14 @@
 package com.example.wordsapp
 
 import android.os.Bundle
+import android.provider.ContactsContract.CommonDataKinds.StructuredName.PREFIX
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
+import com.example.wordsapp.Constants.Companion.WORD
 import com.example.wordsapp.databinding.FragmentDetailsBinding
-import com.example.wordsapp.databinding.FragmentWordListBinding
 
 
 class Details : Fragment() {
@@ -17,7 +19,7 @@ class Details : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            searchContext=Constants.SEARCH_PREFIX+it.getString("word").toString()
+            searchContext=PREFIX+it.getString(WORD).toString()
         }
     }
 
@@ -31,7 +33,14 @@ class Details : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.search.text=searchContext
+        val webView=binding.webView
+        webView.webViewClient= WebViewClient()
+        webView.loadUrl(searchContext)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding=null
     }
 
 }
