@@ -14,14 +14,8 @@ import com.syedabdullah.todo.model.ToDo
 class TodoListAdapter:RecyclerView.Adapter<TodoListAdapter.TodoListViewHolder>() {
 
     private var todoList:List<ToDo> = ToDoRepo().getToDo()
-    init {
-        Log.d("check", "adapter outer class: ")
-    }
 
     class TodoListViewHolder(private val view: View):RecyclerView.ViewHolder(view){
-        init {
-            Log.d("check", "init block called() inner class")
-        }
         val title: TextView =view.findViewById(R.id.tv_title)
         val description:TextView=view.findViewById(R.id.tv_description)
         val time:TextView=view.findViewById(R.id.tv_time)
@@ -44,7 +38,6 @@ class TodoListAdapter:RecyclerView.Adapter<TodoListAdapter.TodoListViewHolder>()
     }
 
     override fun getItemCount(): Int {
-        Log.d("check", "getItemCount: ${todoList.size} ")
         return todoList.size
     }
 }

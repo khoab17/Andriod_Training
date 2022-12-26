@@ -22,7 +22,6 @@ class TodoListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("check", "onCreate: ()${ToDoRepo().getToDo()}")
     }
 
     override fun onCreateView(
@@ -39,7 +38,6 @@ class TodoListFragment : Fragment() {
         recyclerView=binding.recyclerViewTodoList
         recyclerView.layoutManager=LinearLayoutManager(context)
         recyclerView.adapter=TodoListAdapter()
-        Log.d("check", "onViewCreated: () ToDoListFragment")
 
         binding.favAddTask.setOnClickListener {
             findNavController().navigate(R.id.addTaskFragment)

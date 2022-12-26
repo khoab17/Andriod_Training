@@ -10,4 +10,5 @@
     <string name="description">Description</string>
     <string name="add_task">Add Task</string>
     <string name="your_todo_list">Your todo list:-</string>
+    <string name="your_history">Your History</string>
 </resources>

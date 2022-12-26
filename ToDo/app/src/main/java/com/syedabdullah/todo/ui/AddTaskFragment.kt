@@ -1,6 +1,7 @@
 package com.syedabdullah.todo.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,8 +37,7 @@ class AddTaskFragment : Fragment() {
         binding.buttonAddTask.setOnClickListener {
             val title=binding.editTextTitle.text.toString()
             val description=binding.editTextDescription.text.toString()
-            ToDoRepo().addTodo(ToDo(title,description,Calendar.getInstance().time.toString(),Calendar.getInstance().time.toString(),false))
-
+            ToDoRepo().addTodo(ToDo(title,description,Calendar.getInstance().time.toString(),false))
             findNavController().navigate(R.id.todoListFragment)
         }
     }
