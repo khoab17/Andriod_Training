@@ -4,11 +4,11 @@ import com.syedabdullah.todo.model.ToDo
 
 class ToDoRepo {
     companion object{
-        var listofTask: MutableList<ToDo> = mutableListOf<ToDo>(
-            ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",false),
-            ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",false),
+        var listOfTask: MutableList<ToDo> = mutableListOf<ToDo>(
+            ToDo("work","Life seems very rough.","Mon Dec 26 18:25:26 BDT 2022",false),
             ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",true),
-            ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",false),
+            ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",true),
+            ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",true),
             ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",true),
             ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",false),
             ToDo("work","need to got to office at 8.","Mon Dec 26 18:25:26 BDT 2022",true),
@@ -22,7 +22,7 @@ class ToDoRepo {
 
     fun getToDo():List<ToDo>{
         val listTodo= mutableListOf<ToDo>()
-        listofTask.forEach {
+        listOfTask.forEach {
             if(!it.status)
                 listTodo.add(it)
         }
@@ -31,7 +31,7 @@ class ToDoRepo {
 
     fun getHistory():List<ToDo>{
         val history= mutableListOf<ToDo>()
-        listofTask.forEach {
+        listOfTask.forEach {
             if (it.status)
                 history.add(it)
         }
@@ -39,6 +39,6 @@ class ToDoRepo {
     }
 
     fun addTodo(todo:ToDo){
-        listofTask.add(todo)
+        listOfTask.add(todo)
     }
 }

@@ -11,4 +11,5 @@
     <string name="add_task">Add Task</string>
     <string name="your_todo_list">Your todo list:-</string>
     <string name="your_history">Your History</string>
+    <string name="update">update</string>
 </resources>

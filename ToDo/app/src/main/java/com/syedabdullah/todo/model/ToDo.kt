@@ -4,4 +4,4 @@ data class ToDo(
     val title:String,
     val description:String,
     val time:String,
-    val status:Boolean)
+    var status:Boolean)

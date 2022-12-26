@@ -35,6 +35,11 @@ class TodoListAdapter:RecyclerView.Adapter<TodoListAdapter.TodoListViewHolder>()
         holder.time.text=todoList[position].time
         holder.status.isChecked=todoList[position].status
 
+        holder.itemView.setOnClickListener {
+            holder.status.isChecked=!todoList[position].status
+            todoList[position].status=!todoList[position].status
+        }
+
     }
 
     override fun getItemCount(): Int {
