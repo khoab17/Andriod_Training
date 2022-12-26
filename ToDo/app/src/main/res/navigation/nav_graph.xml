@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/todoListFragment">
+
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.syedabdullah.todo.ui.TodoListFragment"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_todoListFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+        <action
+            android:id="@+id/action_todoListFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_todoListFragment_to_addTaskFragment"
+            app:destination="@id/addTaskFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.syedabdullah.todo.ui.HistoryFragment"
+        android:label="History" >
+        <action
+            android:id="@+id/action_historyFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+        <action
+            android:id="@+id/action_historyFragment_to_settingFragment"
+            app:destination="@id/settingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.syedabdullah.todo.ui.SettingFragment"
+        android:label="Setting" >
+        <action
+            android:id="@+id/action_settingFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTaskFragment"
+        android:name="com.syedabdullah.todo.ui.AddTaskFragment"
+        android:label="fragment_add_task"
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_todoListFragment"
+            app:destination="@id/todoListFragment" />
+    </fragment>
+</navigation>
