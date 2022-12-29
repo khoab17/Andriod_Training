@@ -6,11 +6,11 @@ import com.syedabdullah.shop.data.DataSource
 import com.syedabdullah.shop.model.Product
 
 class ProductViewModel :ViewModel(){
-//    private val productList:List<Product> = DataSource().getProducts()
-//    val list:MutableLiveData<MutableList<Product>> = productList.toMutableList()
+    private val productList:List<Product> = DataSource().getProducts()
+    val list:MutableLiveData<MutableList<Product>> = productList.toMutableList()
 
-    val list=MutableLiveData<ArrayList<Product>>()
-    private val productList= arrayListOf<Product>()
+//    val list=MutableLiveData<ArrayList<Product>>()
+//    private val productList= arrayListOf<Product>()
 
     fun addProduct(product:Product){
         productList.add(product)
