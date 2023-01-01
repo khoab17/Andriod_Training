@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.UsersFragment">
 
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fav_add_user"
         android:layout_width="wrap_content"
@@ -17,6 +26,6 @@
         app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
