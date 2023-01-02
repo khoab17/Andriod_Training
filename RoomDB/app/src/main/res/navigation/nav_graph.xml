@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_usersFragment_to_addUserFragment"
             app:destination="@id/addUserFragment" />
+        <action
+            android:id="@+id/action_usersFragment_to_updateFragment"
+            app:destination="@id/updateFragment" />
     </fragment>
     <fragment
         android:id="@+id/addUserFragment"
@@ -22,5 +25,17 @@
         <action
             android:id="@+id/action_addUserFragment_to_usersFragment"
             app:destination="@id/usersFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateFragment"
+        android:name="com.syedabdullah.roomdb.ui.UpdateFragment"
+        android:label="fragment_update"
+        tools:layout="@layout/fragment_update" >
+        <action
+            android:id="@+id/action_updateFragment_to_usersFragment"
+            app:destination="@id/usersFragment" />
+        <argument
+            android:name="current_user"
+            app:argType="com.syedabdullah.roomdb.model.User" />
     </fragment>
 </navigation>

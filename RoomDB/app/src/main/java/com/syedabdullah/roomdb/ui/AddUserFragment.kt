@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.syedabdullah.roomdb.R
@@ -43,7 +44,12 @@ class AddUserFragment : Fragment() {
         val firstName=binding.firstnameEt.text.toString()
         val lastName=binding.lastnameEt.text.toString()
         val age=binding.ageEt.text.toString()
-        if (!TextUtils.isEmpty(firstName) &&!TextUtils.isEmpty(lastName)&&!TextUtils.isEmpty(age)){
+
+        if(firstName.isBlank() || lastName.isBlank() || age.isBlank())
+        {
+            Toast.makeText(requireContext(), "Provide all the values", Toast.LENGTH_SHORT).show()
+        }
+        else{
             val user= User(0,firstName,lastName,age.toInt())
             viewModel.addUser(user)
             findNavController().navigate(R.id.action_addUserFragment_to_usersFragment)
