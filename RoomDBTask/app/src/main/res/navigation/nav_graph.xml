@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.syedabdullah.roomdbtask.fragment.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_addShopFragment"
+            app:destination="@id/addShopFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_updateShopFragment"
+            app:destination="@id/updateShopFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addShopFragment"
+        android:name="com.syedabdullah.roomdbtask.fragment.AddShopFragment"
+        android:label="fragment_add_shop"
+        tools:layout="@layout/fragment_add_shop" >
+        <action
+            android:id="@+id/action_addShopFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateShopFragment"
+        android:name="com.syedabdullah.roomdbtask.fragment.UpdateShopFragment"
+        android:label="fragment_update_shop"
+        tools:layout="@layout/fragment_update_shop" >
+        <action
+            android:id="@+id/action_updateShopFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="current_shop"
+            app:argType="com.syedabdullah.roomdbtask.model.Shop" />
+    </fragment>
+    <fragment
+        android:id="@+id/addProductToShopFragment"
+        android:name="com.syedabdullah.roomdbtask.fragment.AddProductToShopFragment"
+        android:label="fragment_add_product_to_shop"
+        tools:layout="@layout/fragment_add_product_to_shop" >
+        <action
+            android:id="@+id/action_addProductToShopFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+        <argument
+            android:name="current_shop"
+            app:argType="com.syedabdullah.roomdbtask.model.Shop" />
+    </fragment>
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.syedabdullah.roomdbtask.fragment.ProductListFragment"
+        android:label="fragment_product_list"
+        tools:layout="@layout/fragment_product_list" >
+        <action
+            android:id="@+id/action_productListFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_productListFragment_to_addProductToShopFragment"
+            app:destination="@id/addProductToShopFragment" />
+        <argument
+            android:name="current_shop"
+            app:argType="com.syedabdullah.roomdbtask.model.Shop" />
+    </fragment>
+</navigation>

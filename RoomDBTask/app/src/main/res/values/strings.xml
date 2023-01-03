@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">RoomDB Task</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="enter_shop_name">Enter Shop Name</string>
+    <string name="enter_shop_type">Enter Shop Type</string>
+    <string name="provide_description">Provide Description</string>
+    <string name="add_shop">Add Shop</string>
+    <string name="description">Description</string>
+    <string name="type">Type</string>
+    <string name="shop_name">Shop Name</string>
+    <string name="update">Update</string>
+    <string name="update_shop">Update Shop</string>
+    <string name="products">Products</string>
+    <string name="view">View</string>
+    <string name="add_product">Add Product</string>
+    <string name="product_name">Product Name</string>
+    <string name="price">Price</string>
+</resources>
