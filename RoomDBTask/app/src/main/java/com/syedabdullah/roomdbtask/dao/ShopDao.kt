@@ -26,7 +26,7 @@ interface ShopDao {
     fun getShops():LiveData<List<Shop>>
 
     @Query("SELECT * FROM product_table WHERE shopId=:id")
-    suspend fun getProducts(id:Int):List<Product>
+    fun getProducts(id:Int):LiveData<List<Product>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addProduct(product: Product)

@@ -14,6 +14,7 @@ import kotlinx.coroutines.launch
 
 class ShopViewModel(application: Application):AndroidViewModel(application) {
     var readAllData:LiveData<List<Shop>>
+    lateinit var readAllProduct:LiveData<List<Product>>
     private val repository:ShopRepository
 
     init {
@@ -43,7 +44,7 @@ class ShopViewModel(application: Application):AndroidViewModel(application) {
             repository.addProduct(product)
         }
     }
-    suspend fun getProducts(id:Int):List<Product>{
-        return repository.getProducts(id)
+    fun getProducts(id:Int){
+        readAllProduct = repository.getProducts(id)
     }
 }

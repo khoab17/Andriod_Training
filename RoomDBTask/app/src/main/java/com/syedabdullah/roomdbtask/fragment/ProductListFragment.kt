@@ -1,6 +1,7 @@
 package com.syedabdullah.roomdbtask.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,11 +25,6 @@ class ProductListFragment : Fragment() {
     private lateinit var viewModel: ShopViewModel
     private lateinit var recyclerView: RecyclerView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,12 +38,15 @@ class ProductListFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ShopViewModel::class.java]
 
         binding.apply {
+            viewModel.getProducts(navArgs.currentShop.id)
             recyclerView=recyclerViewProducts
             recyclerView.layoutManager=LinearLayoutManager(requireContext())
             val adapter = ProductAdapter(requireContext()
-                )
+                ,viewModel)
             recyclerView.adapter=adapter
-
+            viewModel.readAllProduct.observe(viewLifecycleOwner){
+                adapter.setData(it)
+            }
 
             favAddProduct.setOnClickListener {
                 val action = ProductListFragmentDirections.actionProductListFragmentToAddProductToShopFragment(navArgs.currentShop)

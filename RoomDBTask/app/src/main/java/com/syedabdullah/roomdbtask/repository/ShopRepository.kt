@@ -24,7 +24,7 @@ class ShopRepository(private val shopDao: ShopDao) {
         shopDao.deleteShop(shop)
     }
 
-    suspend fun getProducts(id:Int):List<Product>{
+    fun getProducts(id:Int):LiveData<List<Product>>{
         return shopDao.getProducts(id)
     }
 

@@ -66,7 +66,7 @@
         android:id="@+id/button_update"
         android:layout_width="70dp"
         android:layout_height="25dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:includeFontPadding="false"
         android:insetTop="0dp"

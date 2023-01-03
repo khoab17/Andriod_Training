@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/addShopFragment"
         android:name="com.syedabdullah.roomdbtask.fragment.AddShopFragment"
-        android:label="fragment_add_shop"
+        android:label="Add Your Shop"
         tools:layout="@layout/fragment_add_shop" >
         <action
             android:id="@+id/action_addShopFragment_to_homeFragment"
@@ -32,7 +32,7 @@
     <fragment
         android:id="@+id/updateShopFragment"
         android:name="com.syedabdullah.roomdbtask.fragment.UpdateShopFragment"
-        android:label="fragment_update_shop"
+        android:label="Update Your Shop"
         tools:layout="@layout/fragment_update_shop" >
         <action
             android:id="@+id/action_updateShopFragment_to_homeFragment"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/addProductToShopFragment"
         android:name="com.syedabdullah.roomdbtask.fragment.AddProductToShopFragment"
-        android:label="fragment_add_product_to_shop"
+        android:label="Add Product in Shop"
         tools:layout="@layout/fragment_add_product_to_shop" >
         <action
             android:id="@+id/action_addProductToShopFragment_to_productListFragment"
@@ -56,7 +56,7 @@
     <fragment
         android:id="@+id/productListFragment"
         android:name="com.syedabdullah.roomdbtask.fragment.ProductListFragment"
-        android:label="fragment_product_list"
+        android:label="Product List"
         tools:layout="@layout/fragment_product_list" >
         <action
             android:id="@+id/action_productListFragment_to_homeFragment"
