@@ -16,4 +16,7 @@
     <string name="add_product">Add Product</string>
     <string name="product_name">Product Name</string>
     <string name="price">Price</string>
+    <string name="date">Date</string>
+    <string name="home">Home</string>
+    <string name="update_photo">Update Photo</string>
 </resources>

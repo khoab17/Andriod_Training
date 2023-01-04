@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -13,6 +14,8 @@ import com.syedabdullah.roomdbtask.databinding.FragmentAddShopBinding
 import com.syedabdullah.roomdbtask.databinding.FragmentHomeBinding
 import com.syedabdullah.roomdbtask.model.Shop
 import com.syedabdullah.roomdbtask.viewmodel.ShopViewModel
+import java.time.LocalDate
+import java.util.Date
 
 class AddShopFragment : Fragment() {
 
@@ -37,14 +40,21 @@ class AddShopFragment : Fragment() {
         viewModel = ViewModelProvider(this)[ShopViewModel::class.java]
         binding.apply {
             addButton.setOnClickListener {
-                val shop= Shop(
-                    0,
-                    editShopName.text.toString(),
-                    editShopType.text.toString(),
-                    editShopDescription.text.toString()
-                )
-                viewModel.addShop(shop)
-                findNavController().navigate(R.id.homeFragment)
+                if(editShopName.text.toString().isBlank() || editShopType.text.toString().isBlank() || editShopDescription.text.toString().isBlank())
+                {
+                    Toast.makeText(requireContext(), "Provide all values", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    val shop = Shop(
+                        0,
+                        editShopName.text.toString(),
+                        editShopType.text.toString(),
+                        editShopDescription.text.toString(),
+                        Date()
+                    )
+                    viewModel.addShop(shop)
+                    findNavController().navigate(R.id.homeFragment)
+                }
             }
         }
     }

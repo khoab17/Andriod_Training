@@ -60,6 +60,8 @@ class UpdateProductFragment : Fragment() {
                     findNavController().navigate(action)
                 }
             }
+
+
         }
     }
 }

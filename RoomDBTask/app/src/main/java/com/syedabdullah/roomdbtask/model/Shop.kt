@@ -6,6 +6,8 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
+import java.time.LocalDate
+import java.util.*
 
 @Parcelize
 @Entity(tableName = "shop_table")
@@ -17,5 +19,7 @@ data class Shop(
     @NonNull
     val type:String,
     @NonNull
-    val description:String
+    val description:String,
+    @NonNull
+    val date: Date
 ):Parcelable

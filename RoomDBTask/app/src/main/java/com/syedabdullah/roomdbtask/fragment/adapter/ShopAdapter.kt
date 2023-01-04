@@ -15,6 +15,8 @@ import com.syedabdullah.roomdbtask.fragment.HomeFragment
 import com.syedabdullah.roomdbtask.fragment.HomeFragmentDirections
 import com.syedabdullah.roomdbtask.model.Shop
 import com.syedabdullah.roomdbtask.viewmodel.ShopViewModel
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class ShopAdapter(
     val context: Context,
@@ -28,6 +30,7 @@ class ShopAdapter(
         val name: TextView =view.findViewById(R.id.tv_name_shop)
         val type: TextView =view.findViewById(R.id.tv_type_shop)
         val description: TextView =view.findViewById(R.id.tv_description)
+        val date:TextView = view.findViewById(R.id.tv_date_Created_shop)
 
         val updateButton: Button =view.findViewById(R.id.button_update)
         val deleteButton: Button =view.findViewById(R.id.button_delete)
@@ -45,6 +48,7 @@ class ShopAdapter(
             name.text=listOfShops[position].name
             type.text=listOfShops[position].type
             description.text=listOfShops[position].description
+            date.text=getDateFormat(listOfShops[position].date)
 
             updateButton.setOnClickListener {
                 val action = HomeFragmentDirections.actionHomeFragmentToUpdateShopFragment(listOfShops[position])
@@ -69,5 +73,10 @@ class ShopAdapter(
     fun setData(shops:List<Shop>){
         listOfShops=shops
         notifyDataSetChanged()
+    }
+
+    private fun getDateFormat(date: Date):String {
+        val sdf = SimpleDateFormat("HH:mm yyyy-MM-dd ")
+        return  "Date: "+sdf.format(date)
     }
 }

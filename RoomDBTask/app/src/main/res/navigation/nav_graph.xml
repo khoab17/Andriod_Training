@@ -74,7 +74,7 @@
     <fragment
         android:id="@+id/updateProductFragment"
         android:name="com.syedabdullah.roomdbtask.fragment.UpdateProductFragment"
-        android:label="fragment_update_product"
+        android:label="Update Product"
         tools:layout="@layout/fragment_update_product" >
         <action
             android:id="@+id/action_updateProductFragment_to_productListFragment"
