@@ -25,9 +25,18 @@ interface ShopDao {
     @Query("SELECT * FROM shop_table")
     fun getShops():LiveData<List<Shop>>
 
+    @Query("SELECT * FROM shop_table WHERE id=:id")
+    fun getShop(id:Int):Shop
+
     @Query("SELECT * FROM product_table WHERE shopId=:id")
     fun getProducts(id:Int):LiveData<List<Product>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addProduct(product: Product)
+
+    @Update
+    suspend fun updateProduct(product: Product)
+
+    @Delete
+    suspend fun deleteProduct(product: Product)
 }

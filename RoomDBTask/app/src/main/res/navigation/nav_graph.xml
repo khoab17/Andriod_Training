@@ -67,5 +67,23 @@
         <argument
             android:name="current_shop"
             app:argType="com.syedabdullah.roomdbtask.model.Shop" />
+        <action
+            android:id="@+id/action_productListFragment_to_updateProductFragment"
+            app:destination="@id/updateProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateProductFragment"
+        android:name="com.syedabdullah.roomdbtask.fragment.UpdateProductFragment"
+        android:label="fragment_update_product"
+        tools:layout="@layout/fragment_update_product" >
+        <action
+            android:id="@+id/action_updateProductFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+        <argument
+            android:name="current_product"
+            app:argType="com.syedabdullah.roomdbtask.model.Product" />
+        <argument
+            android:name="current_shop"
+            app:argType="com.syedabdullah.roomdbtask.model.Shop" />
     </fragment>
 </navigation>

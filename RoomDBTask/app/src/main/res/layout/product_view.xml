@@ -65,7 +65,7 @@
         tools:layout_editor_absoluteX="-16dp" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_update"
+        android:id="@+id/button_update_product"
         android:layout_width="70dp"
         android:layout_height="25dp"
         android:layout_marginTop="20dp"
@@ -80,7 +80,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_delete"
+        android:id="@+id/button_delete_Product"
         android:layout_width="70dp"
         android:layout_height="25dp"
         android:layout_marginTop="16dp"
@@ -89,8 +89,8 @@
         android:insetBottom="0dp"
         android:padding="0dp"
         android:text="Delete"
-        app:layout_constraintTop_toBottomOf="@+id/button_update"
-        app:layout_constraintEnd_toEndOf="@id/button_update"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_update_product"
+        app:layout_constraintEnd_toEndOf="@id/button_update_product"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

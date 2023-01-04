@@ -22,6 +22,9 @@ class ShopViewModel(application: Application):AndroidViewModel(application) {
         repository= ShopRepository(shopDao)
         readAllData = repository.getShops()
     }
+    fun getShop(id:Int):Shop{
+        return repository.getShop(id)
+    }
     fun addShop(shop: Shop){
         viewModelScope.launch (Dispatchers.IO){
             repository.addShop(shop)
@@ -46,5 +49,15 @@ class ShopViewModel(application: Application):AndroidViewModel(application) {
     }
     fun getProducts(id:Int){
         readAllProduct = repository.getProducts(id)
+    }
+    fun updateProduct(product: Product){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.updateProduct(product)
+        }
+    }
+    fun deleteProduct(product: Product){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteProduct(product)
+        }
     }
 }

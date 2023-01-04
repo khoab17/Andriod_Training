@@ -5,18 +5,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.LiveData
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.syedabdullah.roomdbtask.R
+import com.syedabdullah.roomdbtask.fragment.ProductListFragmentDirections
 import com.syedabdullah.roomdbtask.model.Product
 import com.syedabdullah.roomdbtask.model.Shop
 import com.syedabdullah.roomdbtask.viewmodel.ShopViewModel
 
 class ProductAdapter(
     val context: Context,
-    viewmodel:ShopViewModel
+    val viewModel:ShopViewModel,
+    val shop: Shop
 ): RecyclerView.Adapter<ProductAdapter.ItemViewHolder>() {
 
     private var listOfProducts= emptyList<Product>()
@@ -26,6 +31,9 @@ class ProductAdapter(
         val name: TextView =view.findViewById(R.id.tv_name_product)
         val description: TextView =view.findViewById(R.id.tv_description_product)
         val price: TextView =view.findViewById(R.id.tv_price_product)
+
+        val updateButton:Button=view.findViewById(R.id.button_update_product)
+        val deleteButton:Button=view.findViewById(R.id.button_delete_Product)
 
     }
 
@@ -40,6 +48,16 @@ class ProductAdapter(
             name.text=listOfProducts[position].name
             description.text=listOfProducts[position].description
             price.text=listOfProducts[position].price.toString()
+
+            updateButton.setOnClickListener { 
+                val action = ProductListFragmentDirections.actionProductListFragmentToUpdateProductFragment(listOfProducts[position],shop)
+                itemView.findNavController().navigate(action)
+            }
+            
+            deleteButton.setOnClickListener { 
+                viewModel.deleteProduct(listOfProducts[position])
+                Toast.makeText(context, "product deleted", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

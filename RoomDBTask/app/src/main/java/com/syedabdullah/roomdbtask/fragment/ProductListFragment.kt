@@ -42,7 +42,7 @@ class ProductListFragment : Fragment() {
             recyclerView=recyclerViewProducts
             recyclerView.layoutManager=LinearLayoutManager(requireContext())
             val adapter = ProductAdapter(requireContext()
-                ,viewModel)
+                ,viewModel,navArgs.currentShop)
             recyclerView.adapter=adapter
             viewModel.readAllProduct.observe(viewLifecycleOwner){
                 adapter.setData(it)
