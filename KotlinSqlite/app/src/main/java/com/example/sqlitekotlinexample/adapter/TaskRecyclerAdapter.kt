@@ -35,6 +35,12 @@ class TaskRecyclerAdapter(tasksList: List<Tasks>, internal var context: Context)
         holder.name.text = tasks.name
         holder.desc.text = tasks.desc
         holder.time.text =tasks.time
+        holder.priority.text = tasks.priority
+        holder.priority.background =when(holder.priority.text){
+            "High"->ContextCompat.getDrawable(context, R.color.colorUnSuccess)
+            "Medium"->ContextCompat.getDrawable(context, R.color.colorSuccess)
+            else->ContextCompat.getDrawable(context, R.color.colorPrimary)
+        }
         if (tasks.completed == "Y")
             holder.list_item.background = ContextCompat.getDrawable(context, R.color.colorSuccess)
         else
@@ -57,6 +63,7 @@ class TaskRecyclerAdapter(tasksList: List<Tasks>, internal var context: Context)
         var name: TextView = view.findViewById(R.id.tvName) as TextView
         var desc: TextView = view.findViewById(R.id.tvDesc) as TextView
         var time: TextView = view.findViewById(R.id.tv_time_task)
+        var priority:TextView = view.findViewById(R.id.tv_task_priority)
         var list_item: LinearLayout = view.findViewById(R.id.list_item) as LinearLayout
     }
 }

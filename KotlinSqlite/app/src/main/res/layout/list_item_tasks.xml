@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorAccent"
     android:id="@+id/list_item"
     android:orientation="vertical"
@@ -38,14 +39,35 @@
             android:text="Desc"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/tv_time_task"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Time:"
-            android:fontFamily="sans-serif-smallcaps"
-            android:padding="5dp"
-            android:textColor="#000"/>
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_time_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time:"
+                android:fontFamily="sans-serif-smallcaps"
+                android:padding="5dp"
+                android:textColor="#000"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <TextView
+                android:id="@+id/tv_task_priority"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Priority:"
+                android:fontFamily="sans-serif-smallcaps"
+                android:padding="5dp"
+                android:textColor="#000"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+        </android.support.constraint.ConstraintLayout>
+
+
 
     </LinearLayout>
+
 </LinearLayout>

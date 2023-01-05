@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">ToDo App</string>
     <string name="action_delete">Delete All</string>
+    <string-array name="priority">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
 </resources>

@@ -7,5 +7,6 @@ class Tasks {
     var desc: String = ""
     var completed: String = "N"
     var time:String=""
+    var priority:String=""
 
 }
