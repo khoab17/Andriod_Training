@@ -80,7 +80,6 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DatabaseHand
         values.put(NAME, tasks.name)
         values.put(DESC, tasks.desc)
         values.put(COMPLETED, tasks.completed)
-        values.put(TIME, tasks.time)
         val _success = db.update(TABLE_NAME, values, ID + "=?", arrayOf(tasks.id.toString())).toLong()
         db.close()
         return Integer.parseInt("$_success") != -1
@@ -101,7 +100,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DatabaseHand
     }
 
     companion object {
-        private val DB_VERSION = 1
+        private val DB_VERSION = 2
         private val DB_NAME = "MyTasks"
         private val TABLE_NAME = "Tasks"
         private val ID = "Id"
