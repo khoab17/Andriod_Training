@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.sqlitekotlinexample.MainActivity">
+    <item
+        android:id="@+id/action_delete"
+        android:orderInCategory="1"
+        android:title="@string/action_delete"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_delete"/>
+    <item
+        android:id="@+id/action_add"
+        android:orderInCategory="2"
+        android:title="Add Task"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_add"/>
+</menu>
