@@ -19,7 +19,7 @@ class AddOrEditActivity : AppCompatActivity() {
 
     var dbHandler: DatabaseHandler? = null
     var isEditMode = false
-    private var selectedPriority ="High"
+    private var selectedPriority ="1"
 
     private lateinit var binding: ActivityAddEditBinding
 
@@ -40,7 +40,9 @@ class AddOrEditActivity : AppCompatActivity() {
 
         spinner.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                selectedPriority = parent!!.getItemAtPosition(pos).toString()
+                //selectedPriority = parent!!.getItemAtPosition(pos).toString()
+                Log.d("check", "onItemSelected: $pos")
+                selectedPriority =pos.toString()
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -64,8 +66,8 @@ class AddOrEditActivity : AppCompatActivity() {
             binding.inputName.setText(tasks.name)
             binding.inputDesc.setText(tasks.desc)
             when(tasks.priority){
-                "High"->binding.spinnerPriority.setSelection(0)
-                "Medium"->binding.spinnerPriority.setSelection(1)
+                "0"->binding.spinnerPriority.setSelection(0)
+                "1"->binding.spinnerPriority.setSelection(1)
                 else->binding.spinnerPriority.setSelection(2)
             }
             binding.swtCompleted.isChecked = tasks.completed == "Y"

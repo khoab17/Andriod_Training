@@ -36,10 +36,20 @@ class TaskRecyclerAdapter(tasksList: List<Tasks>, internal var context: Context)
         holder.desc.text = tasks.desc
         holder.time.text =tasks.time
         holder.priority.text = tasks.priority
-        holder.priority.background =when(holder.priority.text){
-            "High"->ContextCompat.getDrawable(context, R.color.colorUnSuccess)
-            "Medium"->ContextCompat.getDrawable(context, R.color.colorSuccess)
-            else->ContextCompat.getDrawable(context, R.color.colorPrimary)
+        when(tasks.priority){
+            "0"->{
+                holder.priority.text="High"
+                holder.priority.background =ContextCompat.getDrawable(context, R.color.colorUnSuccess)
+
+            }
+            "1"->{
+                holder.priority.background =ContextCompat.getDrawable(context, R.color.colorSuccess)
+               holder.priority.text="Medium"
+            }
+            else->{
+                holder.priority.background =ContextCompat.getDrawable(context, R.color.colorPrimary)
+               holder.priority.text="Low"
+            }
         }
         if (tasks.completed == "Y")
             holder.list_item.background = ContextCompat.getDrawable(context, R.color.colorSuccess)
