@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.syedabdullah.marsphotos.databinding.FragmentOverviewBinding
+import com.syedabdullah.marsphotos.databinding.GridViewItemBinding
 
 
 class OverviewFragment : Fragment() {
@@ -16,7 +17,9 @@ class OverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentOverviewBinding.inflate(inflater)
+       //val binding = FragmentOverviewBinding.inflate(inflater)
+
+        val binding = GridViewItemBinding.inflate(inflater)
 
         // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
         binding.lifecycleOwner = this

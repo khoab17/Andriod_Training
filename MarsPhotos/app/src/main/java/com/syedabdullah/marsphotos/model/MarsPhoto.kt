@@ -1,4 +1,4 @@
-package com.syedabdullah.marsphotos.network
+package com.syedabdullah.marsphotos.model
 
 import com.squareup.moshi.Json
 
