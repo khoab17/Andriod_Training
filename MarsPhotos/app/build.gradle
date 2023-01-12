@@ -9,6 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.syedabdullah.marsphotos"
+        namespace 'com.syedabdullah.marsphotos'
         minSdkVersion 21
         targetSdkVersion 33
         versionCode 1
@@ -24,6 +25,7 @@ android {
     }
     buildFeatures {
         dataBinding true
+        //viewBinding true
     }
 
     compileOptions {
@@ -45,4 +47,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     implementation 'com.google.android.material:material:1.7.0'
+
+    // Retrofit with Moshi Converter
+    implementation 'com.squareup.retrofit2:converter-moshi:2.9.0'
+
+    // Moshi
+    implementation 'com.squareup.moshi:moshi-kotlin:1.13.0'
 }

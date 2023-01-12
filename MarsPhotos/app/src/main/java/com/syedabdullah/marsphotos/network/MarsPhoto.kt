@@ -1,4 +1,4 @@
-package com.example.android.marsphotos.network
+package com.syedabdullah.marsphotos.network
 
 import com.squareup.moshi.Json
 
