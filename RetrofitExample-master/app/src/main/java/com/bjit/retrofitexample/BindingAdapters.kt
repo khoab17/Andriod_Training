@@ -5,11 +5,11 @@ import android.widget.ImageView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
 import com.bjit.retrofitexample.R
 import com.bjit.retrofitexample.model.MarsPhoto
 import com.bjit.retrofitexample.viewmodel.MarsApiStatus
-import com.bjit.retrofitexample.adapter.PhotoGridAdapter
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsPhoto>?) {
@@ -21,10 +21,11 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsPhoto>?) {
 fun bindImage(imgView: ImageView, imgUrl: String?) {
     imgUrl?.let {
         val imgUri = imgUrl.toUri().buildUpon().scheme("https").build()
-        imgView.load(imgUri) {
-            placeholder(R.drawable.loading_animation)
-            error(R.drawable.ic_broken_image)
-        }
+        Glide.with(imgView.context)
+            .load(imgUri).transition(DrawableTransitionOptions.withCrossFade())
+            .error(R.drawable.ic_broken_image)
+            .placeholder(R.drawable.loading_animation)
+            .into(imgView)
     }
 }
 

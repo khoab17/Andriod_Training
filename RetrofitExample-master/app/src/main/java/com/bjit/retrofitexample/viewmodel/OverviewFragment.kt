@@ -16,33 +16,42 @@
 
 package com.bjit.retrofitexample.viewmodel
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.net.NetworkInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.bjit.retrofitexample.adapter.PhotoGridAdapter
 import com.bjit.retrofitexample.databinding.FragmentOverviewBinding
 
-/**
- * This fragment shows the the status of the Mars photos web services transaction.
- */
+
 class OverviewFragment : Fragment() {
 
-    private val viewModel: OverviewViewModel by viewModels()
+    //private val viewModel: OverviewViewModel by viewModels()
+    private var _isConnected=false
+    private var _binding:FragmentOverviewBinding?=null
+    private val binding get() = _binding!!
+    private lateinit var viewModel: OverviewViewModel
+    companion object{
+       var isConnected=false
+    }
 
-    /**
-     * Inflates the layout with Data Binding, sets its lifecycle owner to the OverviewFragment
-     * to enable Data Binding to observe LiveData, and sets up the RecyclerView with an adapter.
-     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentOverviewBinding.inflate(inflater)
+        _binding = FragmentOverviewBinding.inflate(inflater)
+        isConnected=isOnline(requireContext())
 
-        // Allows Data Binding to Observe LiveData with the lifecycle of this Fragment
+        val viewModel = ViewModelProvider(this)[OverviewViewModel::class.java]
         binding.lifecycleOwner = this
 
         // Giving the binding access to the OverviewViewModel
@@ -53,4 +62,37 @@ class OverviewFragment : Fragment() {
 
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.statusImage.setOnClickListener {
+            if(isConnected){
+                viewModel.getMarsPhotos()
+            }
+        }
+    }
+
+
+    private fun isOnline(context: Context): Boolean {
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        if (connectivityManager != null) {
+            val capabilities =
+                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
+            if (capabilities != null) {
+                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_CELLULAR")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_WIFI")
+                    return true
+                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
+                    Log.i("Internet", "NetworkCapabilities.TRANSPORT_ETHERNET")
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
 }

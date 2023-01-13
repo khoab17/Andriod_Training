@@ -1,6 +1,10 @@
 
 package com.bjit.retrofitexample.viewmodel
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -11,36 +15,30 @@ import kotlinx.coroutines.launch
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 
-/**
- * The [ViewModel] that is attached to the [OverviewFragment].
- */
-class OverviewViewModel : ViewModel() {
 
-    // The internal MutableLiveData that stores the status of the most recent request
+class OverviewViewModel() : ViewModel() {
+
     private val _status = MutableLiveData<MarsApiStatus>()
 
-    // The external immutable LiveData for the request status
     val status: LiveData<MarsApiStatus> = _status
 
-    // Internally, we use a MutableLiveData, because we will be updating the List of MarsPhoto
-    // with new values
     private val _photos = MutableLiveData<List<MarsPhoto>>()
 
-    // The external LiveData interface to the property is immutable, so only this class can modify
     val photos: LiveData<List<MarsPhoto>> = _photos
 
-    /**
-     * Call getMarsPhotos() on init so we can display status immediately.
-     */
+
+
     init {
-        getMarsPhotos()
+        //checkInternetConnection(context)
+        if(OverviewFragment.isConnected)
+            getMarsPhotos()
+        else {
+            _status.value = MarsApiStatus.ERROR
+            _photos.value = listOf()
+        }
     }
 
-    /**
-     * Gets Mars photos information from the Mars API Retrofit service and updates the
-     * [MarsPhoto] [List] [LiveData].
-     */
-    private fun getMarsPhotos() {
+     fun getMarsPhotos() {
 
         viewModelScope.launch {
             _status.value = MarsApiStatus.LOADING
@@ -53,4 +51,6 @@ class OverviewViewModel : ViewModel() {
             }
         }
     }
+
+
 }

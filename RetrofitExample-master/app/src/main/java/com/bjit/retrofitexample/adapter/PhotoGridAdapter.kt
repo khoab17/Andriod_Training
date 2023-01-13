@@ -18,23 +18,17 @@ package com.bjit.retrofitexample.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bjit.retrofitexample.databinding.GridViewItemBinding
 import com.bjit.retrofitexample.model.MarsPhoto
 
-/**
- * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
- * data, including computing diffs between lists.
- */
+
 class PhotoGridAdapter :
     ListAdapter<MarsPhoto, PhotoGridAdapter.MarsPhotosViewHolder>(DiffCallback) {
 
-    /**
-     * The MarsPhotosViewHolder constructor takes the binding variable from the associated
-     * GridViewItem, which nicely gives it access to the full [MarsPhoto] information.
-     */
     class MarsPhotosViewHolder(
         private var binding: GridViewItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
@@ -46,10 +40,7 @@ class PhotoGridAdapter :
         }
     }
 
-    /**
-     * Allows the RecyclerView to determine which items have changed when the [List] of
-     * [MarsPhoto] has been updated.
-     */
+
     companion object DiffCallback : DiffUtil.ItemCallback<MarsPhoto>() {
         override fun areItemsTheSame(oldItem: MarsPhoto, newItem: MarsPhoto): Boolean {
             return oldItem.id == newItem.id
@@ -60,20 +51,19 @@ class PhotoGridAdapter :
         }
     }
 
-    /**
-     * Create new [RecyclerView] item views (invoked by the layout manager)
-     */
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsPhotosViewHolder {
         return MarsPhotosViewHolder(
             GridViewItemBinding.inflate(LayoutInflater.from(parent.context))
         )
     }
 
-    /**
-     * Replaces the contents of a view (invoked by the layout manager)
-     */
+
     override fun onBindViewHolder(holder: MarsPhotosViewHolder, position: Int) {
         val marsPhoto = getItem(position)
         holder.bind(marsPhoto)
+        holder.itemView.setOnClickListener {
+            Toast.makeText(holder.itemView.context, "Id is: ${marsPhoto.id}", Toast.LENGTH_LONG).show()
+        }
     }
 }
