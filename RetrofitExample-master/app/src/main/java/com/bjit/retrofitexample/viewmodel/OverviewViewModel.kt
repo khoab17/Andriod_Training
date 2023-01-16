@@ -1,10 +1,6 @@
 
 package com.bjit.retrofitexample.viewmodel
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,21 +11,22 @@ import kotlinx.coroutines.launch
 
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 
+class OverviewViewModel : ViewModel() {
 
-class OverviewViewModel() : ViewModel() {
-
+    // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<MarsApiStatus>()
 
+    // The external immutable LiveData for the request status
     val status: LiveData<MarsApiStatus> = _status
 
+    // Internally, we use a MutableLiveData, because we will be updating the List of MarsPhoto
+    // with new values
     private val _photos = MutableLiveData<List<MarsPhoto>>()
 
+    // The external LiveData interface to the property is immutable, so only this class can modify
     val photos: LiveData<List<MarsPhoto>> = _photos
 
-
-
     init {
-        //checkInternetConnection(context)
         if(OverviewFragment.isConnected)
             getMarsPhotos()
         else {
@@ -51,6 +48,4 @@ class OverviewViewModel() : ViewModel() {
             }
         }
     }
-
-
 }

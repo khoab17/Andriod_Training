@@ -19,29 +19,24 @@ package com.bjit.retrofitexample.viewmodel
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import android.net.NetworkInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.bjit.retrofitexample.adapter.PhotoGridAdapter
 import com.bjit.retrofitexample.databinding.FragmentOverviewBinding
 
-
 class OverviewFragment : Fragment() {
 
-    //private val viewModel: OverviewViewModel by viewModels()
-    private var _isConnected=false
     private var _binding:FragmentOverviewBinding?=null
     private val binding get() = _binding!!
     private lateinit var viewModel: OverviewViewModel
     companion object{
-       var isConnected=false
+        var isConnected=false
     }
 
     override fun onCreateView(
@@ -51,7 +46,7 @@ class OverviewFragment : Fragment() {
         _binding = FragmentOverviewBinding.inflate(inflater)
         isConnected=isOnline(requireContext())
 
-        val viewModel = ViewModelProvider(this)[OverviewViewModel::class.java]
+        viewModel = ViewModelProvider(this)[OverviewViewModel::class.java]
         binding.lifecycleOwner = this
 
         // Giving the binding access to the OverviewViewModel
@@ -66,12 +61,12 @@ class OverviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.statusImage.setOnClickListener {
+            isConnected=isOnline(requireContext())
             if(isConnected){
                 viewModel.getMarsPhotos()
             }
         }
     }
-
 
     private fun isOnline(context: Context): Boolean {
         val connectivityManager =
@@ -94,5 +89,4 @@ class OverviewFragment : Fragment() {
         }
         return false
     }
-
 }

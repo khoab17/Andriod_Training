@@ -18,13 +18,13 @@ package com.bjit.retrofitexample.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bjit.retrofitexample.MainApplication
 import com.bjit.retrofitexample.databinding.GridViewItemBinding
 import com.bjit.retrofitexample.model.MarsPhoto
-
+import com.bumptech.glide.Glide
 
 class PhotoGridAdapter :
     ListAdapter<MarsPhoto, PhotoGridAdapter.MarsPhotosViewHolder>(DiffCallback) {
@@ -34,12 +34,9 @@ class PhotoGridAdapter :
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(marsPhoto: MarsPhoto) {
             binding.photo = marsPhoto
-            // This is important, because it forces the data binding to execute immediately,
-            // which allows the RecyclerView to make the correct view size measurements
             binding.executePendingBindings()
         }
     }
-
 
     companion object DiffCallback : DiffUtil.ItemCallback<MarsPhoto>() {
         override fun areItemsTheSame(oldItem: MarsPhoto, newItem: MarsPhoto): Boolean {
@@ -51,19 +48,14 @@ class PhotoGridAdapter :
         }
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MarsPhotosViewHolder {
         return MarsPhotosViewHolder(
             GridViewItemBinding.inflate(LayoutInflater.from(parent.context))
         )
     }
 
-
     override fun onBindViewHolder(holder: MarsPhotosViewHolder, position: Int) {
         val marsPhoto = getItem(position)
         holder.bind(marsPhoto)
-        holder.itemView.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "Id is: ${marsPhoto.id}", Toast.LENGTH_LONG).show()
-        }
     }
 }
