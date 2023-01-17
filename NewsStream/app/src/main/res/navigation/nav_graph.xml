@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/newsFeedFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.syedabdullah.newsstream.ui.HomeFragment"
         android:label="News Stream"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/newsFeedFragment"
+        android:name="com.syedabdullah.newsstream.ui.NewsFeedFragment"
+        android:label="News Stream"
+        tools:layout="@layout/fragment_news_feed" />
 </navigation>
