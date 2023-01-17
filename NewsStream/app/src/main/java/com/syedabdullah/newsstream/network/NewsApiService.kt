@@ -8,6 +8,7 @@ import com.syedabdullah.newsstream.network.ApiConstant.Companion.KEY
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 
 private val moshi = Moshi.Builder()
@@ -22,6 +23,13 @@ private val retrofit = Retrofit.Builder()
 interface NewsApiService{
     @GET("/v2/top-headlines?country=us&apiKey=$KEY")
     suspend fun getTopHeadlineNews():News
+
+    @GET ("/v2/top-headlines")
+    suspend fun getNewsByCountry(@Query("country") country: String, @Query("apiKey")apiKey: String = KEY):News
+
+    @GET("/v2/top-headlines")
+    suspend fun getNewsByCategory(@Query("category") category: String, @Query("apiKey") apiKey: String = KEY): News
+
 }
 
 object NewsApi{

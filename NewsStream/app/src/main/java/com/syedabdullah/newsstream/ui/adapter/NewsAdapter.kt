@@ -29,7 +29,6 @@ class NewsAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        Log.d("Check", "onBindViewHolder: ${arrayList[position].title}")
         holder.title.text = arrayList[position].title
         holder.description.text = arrayList[position].description
         holder.date.text = arrayList[position].publishedAt

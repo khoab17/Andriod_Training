@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.tabs.TabLayoutMediator
 import com.syedabdullah.newsstream.databinding.FragmentHomeBinding
 import com.syedabdullah.newsstream.ui.adapter.ViewPagerAdapter
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
@@ -15,7 +16,7 @@ import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 class HomeFragment : Fragment() {
     private var _binding:FragmentHomeBinding? =null
     private val binding get() = _binding!!
-    private lateinit var viewModel: ViewModel
+    private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +29,13 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val tabLayout = binding.tabLayout
+        val viewPage = binding.viewPager
 
+        val tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle)
+        viewPage.adapter = tabAdapter
+        TabLayoutMediator(tabLayout, viewPage) { tab, position ->
+            //tab.text = tabList[position].text
+        }.attach()
     }
 }

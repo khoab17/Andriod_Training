@@ -30,13 +30,20 @@ class NewsFeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        val tabLayout = binding.tabLayoutHome
+//        val viewPage = binding.viewPager2
+//
+//        val tabAdapter = TabAdapter(childFragmentManager, lifecycle)
+//        viewPage.adapter = tabAdapter
+//        TabLayoutMediator(tabLayout, viewPage) { tab, position ->
+//            tab.text = tabList[position].title
+//        }.attach()
+
         viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
         recyclerView = binding.recyclerNewsView
         recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
-            if (articles != null) {
+        viewModel.articles.observe(viewLifecycleOwner,Observer { articles ->
                 binding.recyclerNewsView.adapter = NewsAdapter(viewModel.articles.value!!)
-            }
         })
     }
 }

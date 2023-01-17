@@ -48,7 +48,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
 
-    implementation 'com.android.databinding:library:3.0.0'
+    //implementation 'com.android.databinding:library:3.0.0'
 
     //dependency for viewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"

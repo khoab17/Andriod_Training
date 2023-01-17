@@ -7,7 +7,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.syedabdullah.newsstream.ui.HomeFragment
 import com.syedabdullah.newsstream.ui.NewsFeedFragment
 
-private const val NUMS_TAB = 3
+private const val NUMS_TAB = 5
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle):
     FragmentStateAdapter(fragmentManager, lifecycle)
@@ -18,7 +18,12 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle):
 
 
     override fun createFragment(position: Int): Fragment {
-        return Fragment()
+        return when(position){
+            0->NewsFeedFragment()
+            1->NewsFeedFragment()
+            2->NewsFeedFragment()
+            else->Fragment()
+        }
     }
 
 }

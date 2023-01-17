@@ -7,10 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.syedabdullah.newsstream.model.Article
 import com.syedabdullah.newsstream.network.NewsApi
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-const val TAG="check"
 class NewsViewModel:ViewModel() {
     private val _articles = MutableLiveData<List<Article>>()
     val articles: LiveData<List<Article>> = _articles
@@ -19,11 +17,31 @@ class NewsViewModel:ViewModel() {
         getArticlesFromApi()
     }
 
+    fun getNewByCountry(country:String){
+        viewModelScope.launch{
+            try {
+                _articles.value = NewsApi.retrofitService.getNewsByCountry(country).articles
+            } catch (e: Exception) {
+                _articles.value = listOf()
+            }
+        }
+    }
+
+    fun getNewByCategory(category:String){
+        viewModelScope.launch{
+            try {
+                _articles.value = NewsApi.retrofitService.getNewsByCountry(category).articles
+                Log.d("TAG", "getNewByCategory: ${articles.value}")
+            } catch (e: Exception) {
+                _articles.value = listOf()
+            }
+        }
+    }
+
     private fun getArticlesFromApi() {
         viewModelScope.launch{
             try {
                 _articles.value = NewsApi.retrofitService.getTopHeadlineNews().articles
-                Log.d(TAG, "getArticlesFromApi: ${articles.value}")
             } catch (e: Exception) {
                 _articles.value = listOf()
             }
