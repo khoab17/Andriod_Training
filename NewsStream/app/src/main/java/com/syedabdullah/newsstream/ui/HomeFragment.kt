@@ -35,7 +35,13 @@ class HomeFragment : Fragment() {
         val tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle)
         viewPage.adapter = tabAdapter
         TabLayoutMediator(tabLayout, viewPage) { tab, position ->
-            //tab.text = tabList[position].text
+            when (position){
+                0->tab.text="Top News"
+                1->tab.text="US News"
+                2->tab.text="Business"
+                3->tab.text="Entertainment"
+                else->tab.text="Sports"
+            }
         }.attach()
     }
 }

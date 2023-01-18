@@ -1,7 +1,5 @@
 package com.syedabdullah.newsstream.ui.adapter
 
-import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +33,7 @@ class NewsAdapter(
 
         Glide.with(holder.itemView.context)
             .load(arrayList[position].urlToImage)
+            .placeholder(R.drawable.loading_animation)
             .into(holder.image)
     }
 
