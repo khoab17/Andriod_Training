@@ -23,6 +23,10 @@ class NewsRepository(private val newsDao: NewsDao) {
         newsDao.deleteNewsArticle(newsArticle)
     }
 
+    suspend fun deleteAllNewsArticle(){
+        newsDao.deleteAllNewsArticle()
+    }
+
     //Crud for bookmark
     suspend fun addBookmark(bookmark: Bookmark){
         newsDao.addBookmark(bookmark)
@@ -37,5 +41,9 @@ class NewsRepository(private val newsDao: NewsDao) {
     }
     suspend fun deleteBookmark(bookmark: Bookmark){
         newsDao.deleteBookmark(bookmark)
+    }
+
+    suspend fun deleteAllBookmarks(){
+        newsDao.deleteAllBookmarks()
     }
 }

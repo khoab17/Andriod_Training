@@ -20,6 +20,9 @@ interface NewsDao {
     @Delete
     suspend fun deleteNewsArticle(newsArticle: NewsArticle)
 
+    @Query("DELETE FROM news_article")
+    suspend fun deleteAllNewsArticle()
+
     //CRUD operation for bookmark
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addBookmark(bookmark: Bookmark)
@@ -32,5 +35,8 @@ interface NewsDao {
 
     @Delete
     suspend fun deleteBookmark(bookmark: Bookmark)
+
+    @Query("DELETE FROM bookmark")
+    suspend fun deleteAllBookmarks()
 
 }
