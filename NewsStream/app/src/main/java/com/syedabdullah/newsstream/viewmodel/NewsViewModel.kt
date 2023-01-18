@@ -31,7 +31,6 @@ class NewsViewModel:ViewModel() {
         viewModelScope.launch{
             try {
                 _articles.value = NewsApi.retrofitService.getNewsByCountry(category).articles
-                Log.d("TAG", "getNewByCategory: ${articles.value}")
             } catch (e: Exception) {
                 _articles.value = listOf()
             }

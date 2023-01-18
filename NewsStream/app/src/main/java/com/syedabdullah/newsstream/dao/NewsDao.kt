@@ -5,6 +5,7 @@ import androidx.room.*
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle
 
+@Dao
 interface NewsDao {
     //CRUD operation for news_article table
     @Insert(onConflict = OnConflictStrategy.REPLACE)

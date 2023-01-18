@@ -1,17 +1,22 @@
 package com.syedabdullah.newsstream.dao
 
-import androidx.room.TypeConverters
+import androidx.room.TypeConverter
 import com.syedabdullah.newsstream.model.Source
 
 class Converters {
-    @TypeConverters
+    @TypeConverter
     fun longToSource(source: Source?):String?{
-        return source.toString()
-    }
-    @TypeConverters
-    fun fromSource(value:String?):Source?{
-        return value?.let {
-            return Source()
+        if(source!=null){
+            return "${source.id}:${source.name}"
         }
+        return null
+    }
+    @TypeConverter
+    fun fromString(value: String?): Source? {
+        if (value == null) {
+            return null
+        }
+        val parts = value.split(":")
+        return Source(parts[0], parts[1])
     }
 }
