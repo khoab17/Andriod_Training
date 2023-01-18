@@ -5,10 +5,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.model.Article
+import com.syedabdullah.newsstream.ui.HomeFragment
+import com.syedabdullah.newsstream.ui.HomeFragmentDirections
+import com.syedabdullah.newsstream.ui.NewsFeedFragment
+import com.syedabdullah.newsstream.ui.NewsFeedFragmentDirections
 
 class NewsAdapter(
     private val arrayList: List<Article>
@@ -35,6 +41,11 @@ class NewsAdapter(
             .load(arrayList[position].urlToImage)
             .placeholder(R.drawable.loading_animation)
             .into(holder.image)
+
+        holder.itemView.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeFragmentToNewsDetailsFragment(arrayList[position].url!!)
+            holder.itemView.findNavController().navigate(action)
+        }
     }
 
     override fun getItemCount(): Int {

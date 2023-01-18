@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
 
-
         val bottomNav = binding.bottomNav as BottomNavigationView
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
