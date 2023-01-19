@@ -6,7 +6,7 @@ import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle
 
 @TypeConverters(Converters::class)
-@Database(entities = [NewsArticle::class, Bookmark::class], version = 2, exportSchema = false)
+@Database(entities = [NewsArticle::class, Bookmark::class], version = 4, exportSchema = false)
 abstract class NewsDatabase:RoomDatabase() {
 
     abstract fun NewsDao():NewsDao

@@ -11,8 +11,11 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNewsArticle(newsArticle: NewsArticle)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun addAllNewsArticles(allNews:List<NewsArticle>)
+
     @Query("SELECT * FROM news_article")
-    fun getAllNewsArticles():LiveData<List<NewsArticle>>
+    fun getAllNewsArticles():List<NewsArticle>
 
     @Update
     suspend fun updateNewsArticle(newsArticle: NewsArticle)

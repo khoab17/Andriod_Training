@@ -3,6 +3,7 @@ package com.syedabdullah.newsstream.repository
 import androidx.lifecycle.LiveData
 import com.syedabdullah.newsstream.dao.NewsDao
 import com.syedabdullah.newsstream.model.Bookmark
+import com.syedabdullah.newsstream.model.News
 import com.syedabdullah.newsstream.model.NewsArticle
 
 class NewsRepository(private val newsDao: NewsDao) {
@@ -11,7 +12,11 @@ class NewsRepository(private val newsDao: NewsDao) {
         newsDao.addNewsArticle(newsArticle)
     }
 
-    fun getAllNewsArticle():LiveData<List<NewsArticle>>{
+    suspend fun addAllNewsArticles(allNewsArticles:List<NewsArticle>){
+        newsDao.addAllNewsArticles(allNewsArticles)
+    }
+
+    fun getAllNewsArticle():List<NewsArticle>{
         return newsDao.getAllNewsArticles()
     }
 

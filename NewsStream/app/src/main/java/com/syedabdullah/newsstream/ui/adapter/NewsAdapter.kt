@@ -11,13 +11,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.model.Article
+import com.syedabdullah.newsstream.model.NewsArticle
 import com.syedabdullah.newsstream.ui.HomeFragment
 import com.syedabdullah.newsstream.ui.HomeFragmentDirections
 import com.syedabdullah.newsstream.ui.NewsFeedFragment
 import com.syedabdullah.newsstream.ui.NewsFeedFragmentDirections
 
 class NewsAdapter(
-    private val arrayList: List<Article>
+    private val arrayList: List<NewsArticle>
 ) : RecyclerView.Adapter<NewsAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
