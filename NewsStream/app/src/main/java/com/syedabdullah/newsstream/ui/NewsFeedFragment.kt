@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,11 +15,10 @@ import com.syedabdullah.newsstream.model.Article
 import com.syedabdullah.newsstream.ui.adapter.NewsAdapter
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
-class NewsFeedFragment : Fragment() {
+class NewsFeedFragment(private val viewModel: NewsViewModel): Fragment() {
     private var _binding : FragmentNewsFeedBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
-    private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,7 +30,7 @@ class NewsFeedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
+        //viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
         recyclerView = binding.recyclerNewsView
         recyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.articles.observe(viewLifecycleOwner,Observer { articles ->

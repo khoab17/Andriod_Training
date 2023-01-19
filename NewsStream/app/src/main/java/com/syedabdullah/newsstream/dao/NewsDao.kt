@@ -17,6 +17,9 @@ interface NewsDao {
     @Query("SELECT * FROM news_article")
     fun getAllNewsArticles():List<NewsArticle>
 
+    @Query("SELECT * FROM news_article WHERE category=:category")
+    fun getAllNewsByCategory(category:String):List<NewsArticle>
+
     @Update
     suspend fun updateNewsArticle(newsArticle: NewsArticle)
 

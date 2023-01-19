@@ -5,9 +5,10 @@ import com.syedabdullah.newsstream.dao.NewsDao
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.News
 import com.syedabdullah.newsstream.model.NewsArticle
+import java.util.Locale.Category
 
 class NewsRepository(private val newsDao: NewsDao) {
-    //Crud for news_article
+    //Crud for news_article===============================
     suspend fun addNewsArticle(newsArticle: NewsArticle){
         newsDao.addNewsArticle(newsArticle)
     }
@@ -18,6 +19,10 @@ class NewsRepository(private val newsDao: NewsDao) {
 
     fun getAllNewsArticle():List<NewsArticle>{
         return newsDao.getAllNewsArticles()
+    }
+
+    fun getAllNewsArticleByCategory(category:String):List<NewsArticle>{
+        return newsDao.getAllNewsByCategory(category)
     }
 
     suspend fun updateNewsArticle(newsArticle: NewsArticle){
@@ -32,7 +37,7 @@ class NewsRepository(private val newsDao: NewsDao) {
         newsDao.deleteAllNewsArticle()
     }
 
-    //Crud for bookmark
+    //Crud for bookmark==========================
     suspend fun addBookmark(bookmark: Bookmark){
         newsDao.addBookmark(bookmark)
     }

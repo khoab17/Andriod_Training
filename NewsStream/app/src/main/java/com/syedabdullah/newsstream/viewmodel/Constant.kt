@@ -6,8 +6,12 @@ import com.syedabdullah.newsstream.model.NewsArticle
 class Constant {
     companion object {
         const val TOP_NEWS = "top_news"
+        const val GENERAL = "general"
         const val BUSINESS = "business"
+        const val ENTERTAINMENT = "entertainment"
         const val SPORTS = "sports"
+        const val HEALTH = "health"
+        const val TECHNOLOGY = "technology"
 
         fun bindAllArticleToNewsArticles(
             articles: List<Article>,

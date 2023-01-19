@@ -6,26 +6,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.syedabdullah.newsstream.databinding.FragmentHomeBinding
 import com.syedabdullah.newsstream.ui.adapter.ViewPagerAdapter
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.BUSINESS
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.ENTERTAINMENT
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.GENERAL
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.SPORTS
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.TOP_NEWS
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 
 class HomeFragment : Fragment() {
     private var _binding:FragmentHomeBinding? =null
     private val binding get() = _binding!!
-    private lateinit var viewModel: NewsViewModel
-
+    //private lateinit var viewModel: NewsViewModel
+    private val viewModel: NewsViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding =FragmentHomeBinding.inflate(inflater,container,false)
-        // viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
+        //viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
         return binding.root
     }
 
@@ -34,12 +40,12 @@ class HomeFragment : Fragment() {
         val tabLayout = binding.tabLayout
         val viewPage = binding.viewPager
 
-        val tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle)
+        val tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, viewModel)
         viewPage.adapter = tabAdapter
         TabLayoutMediator(tabLayout, viewPage) { tab, position ->
             when (position){
                 0->tab.text = "Top News"
-                1->tab.text = "US News"
+                1->tab.text = "General"
                 2->tab.text="Business"
                 3->tab.text="Entertainment"
                 else->tab.text="Sports"
@@ -49,11 +55,26 @@ class HomeFragment : Fragment() {
         tabLayout.addOnTabSelectedListener(object :TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
                 when(tab.position){
-                    0-> Log.d("tag", "onTabSelected: tab 1 ")
-                    1-> Log.d("tag", "onTabSelected: tab 2 ")
-                    2-> Log.d("tag", "onTabSelected: tab 3 ")
-                    3-> Log.d("tag", "onTabSelected: tab 4 ")
-                    else-> Log.d("tag", "onTabSelected: tab  5")
+                    0-> {
+                        viewModel.getNewsByCategory(TOP_NEWS)
+                        Log.d("home", "onTabSelected: top news")
+                    }
+                    1-> {
+                        viewModel.getNewsByCategory(GENERAL)
+                        Log.d("home", "onTabSelected: general")
+                    }
+                    2-> {
+                        viewModel.getNewsByCategory(BUSINESS)
+                        Log.d("home", "onTabSelected: business")
+                    }
+                    3-> {
+                        viewModel.getNewsByCategory(ENTERTAINMENT)
+                        Log.d("home", "onTabSelected: entertainment")
+                    }
+                    else->{
+                        viewModel.getNewsByCategory(SPORTS)
+                        Log.d("home", "onTabSelected: sports")
+                    }
                 }
             }
 
