@@ -42,7 +42,7 @@ class NewsRepository(private val newsDao: NewsDao) {
         newsDao.addBookmark(bookmark)
     }
 
-    fun getAllBookmark():LiveData<List<Bookmark>>{
+    fun getAllBookmark():List<Bookmark>{
         return newsDao.getAllBookmarks()
     }
 

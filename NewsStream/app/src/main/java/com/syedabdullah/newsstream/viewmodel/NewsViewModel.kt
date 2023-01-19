@@ -20,12 +20,16 @@ private const val TAG ="view_model"
 class NewsViewModel(application: Application):AndroidViewModel(application) {
     private val _articles = MutableLiveData<List<NewsArticle>>()
     val articles: LiveData<List<NewsArticle>> = _articles
+    private val _bookmarks = MutableLiveData<List<Bookmark>>()
+    val bookmarks:LiveData<List<Bookmark>> =_bookmarks
     private val repository: NewsRepository
 
     init {
         val newsDao = NewsDatabase.getDatabase(application).NewsDao()
         repository = NewsRepository(newsDao)
+        getBookmarks()
         //getArticlesFromApi()
+        Log.d(TAG, "bookmarks: ${bookmarks.value}")
     }
 
 
@@ -61,16 +65,6 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
-/*    private fun getDataFromRoom(){
-        viewModelScope.launch(Dispatchers.IO) {
-           try {
-               _articles.postValue(repository.getAllNewsArticle())
-           }
-           catch (e:Exception){
-               Log.d("tag", "getDataFromRoom: $e")
-           }
-        }
-    }*/
 
     private fun fetchNewsByCategory(category:String){
         viewModelScope.launch {
@@ -80,6 +74,18 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
+    private fun getBookmarks(){
+        viewModelScope.launch(Dispatchers.IO){
+            try {
+                _bookmarks.postValue(repository.getAllBookmark())
+                Log.d(TAG, "getBookmarks: ${bookmarks.value}")
+                Log.d(TAG, "getBookmarks: ${repository.getAllBookmark()}")
+           }
+           catch (e:Exception){
+               Log.d(TAG, "getBookmarks Exception: $e")
+           }
+        }
+    }
     fun addOrRemoveBookmark(newsArticle: NewsArticle){
         viewModelScope.launch(Dispatchers.IO) {
             try {
@@ -95,6 +101,7 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
                     newsArticle.saved = true
                     repository.updateNewsArticle(newsArticle)
                 }
+                _bookmarks.postValue(repository.getAllBookmark())
             }
             catch (_:java.lang.Exception){}
         }

@@ -3,4 +3,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home">Home</string>
     <string name="bookmarks">Bookmarks</string>
+    <string name="saved_bookmarks">Saved Bookmarks</string>
 </resources>

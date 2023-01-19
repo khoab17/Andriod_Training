@@ -14,7 +14,7 @@
         android:padding="2dp">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_title_bookmark"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -22,11 +22,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:maxLines="2"
             android:textColor="@color/black_light"
-            app:layout_constraintStart_toEndOf="@+id/image_view"
+            app:layout_constraintStart_toEndOf="@+id/image_view_image_bookmark"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/image_view"
+            android:id="@+id/image_view_image_bookmark"
             android:layout_width="200dp"
             android:layout_height="150dp"
             android:padding="8dp"
@@ -38,25 +38,25 @@
 
 
         <TextView
-            android:id="@+id/tv_description"
+            android:id="@+id/tv_description_bookmark"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/tv_date"
+            app:layout_constraintBottom_toTopOf="@id/tv_date_bookmark"
             app:layout_constraintEnd_toEndOf="parent"
             android:maxLines="4"
-            app:layout_constraintStart_toEndOf="@+id/image_view"
-            app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+            app:layout_constraintStart_toEndOf="@+id/image_view_image_bookmark"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_bookmark" />
 
         <TextView
-            android:id="@+id/tv_date"
+            android:id="@+id/tv_date_bookmark"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tv_description"
-            app:layout_constraintTop_toBottomOf="@id/tv_description" />
+            app:layout_constraintStart_toStartOf="@+id/tv_description_bookmark"
+            app:layout_constraintTop_toBottomOf="@id/tv_description_bookmark" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

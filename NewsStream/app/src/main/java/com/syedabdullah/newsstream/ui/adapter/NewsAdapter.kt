@@ -5,19 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
-import com.syedabdullah.newsstream.model.Article
 import com.syedabdullah.newsstream.model.NewsArticle
-import com.syedabdullah.newsstream.ui.HomeFragment
 import com.syedabdullah.newsstream.ui.HomeFragmentDirections
-import com.syedabdullah.newsstream.ui.NewsFeedFragment
-import com.syedabdullah.newsstream.ui.NewsFeedFragmentDirections
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 class NewsAdapter(
@@ -26,7 +20,7 @@ class NewsAdapter(
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val title: TextView = view.findViewById(R.id.tv_title)
-        val image: ImageView = view.findViewById(R.id.image_view_image)
+        val image: ImageView = view.findViewById(R.id.image_view)
         val description: TextView = view.findViewById(R.id.tv_description)
         val date: TextView = view.findViewById(R.id.tv_date)
     }

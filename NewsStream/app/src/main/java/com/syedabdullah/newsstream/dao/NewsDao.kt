@@ -34,7 +34,7 @@ interface NewsDao {
     suspend fun addBookmark(bookmark: Bookmark)
 
     @Query("SELECT * FROM bookmark")
-    fun getAllBookmarks():LiveData<List<Bookmark>>
+    fun getAllBookmarks():List<Bookmark>
 
     @Query("SELECT * FROM bookmark WHERE newsId=:newsId")
     fun getBookmarkByNewsId(newsId:Int):Bookmark
