@@ -36,6 +36,9 @@ interface NewsDao {
     @Query("SELECT * FROM bookmark")
     fun getAllBookmarks():LiveData<List<Bookmark>>
 
+    @Query("SELECT * FROM bookmark WHERE newsId=:newsId")
+    fun getBookmarkByNewsId(newsId:Int):Bookmark
+
     @Update
     suspend fun updateBookmark(bookmark: Bookmark)
 

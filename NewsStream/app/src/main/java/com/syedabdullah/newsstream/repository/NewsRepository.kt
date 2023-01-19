@@ -46,6 +46,10 @@ class NewsRepository(private val newsDao: NewsDao) {
         return newsDao.getAllBookmarks()
     }
 
+    fun getBookmarkByNewsId(newsId:Int):Bookmark{
+        return newsDao.getBookmarkByNewsId(newsId)
+    }
+
     suspend fun updateBookmark(bookmark: Bookmark){
         newsDao.updateBookmark(bookmark)
     }

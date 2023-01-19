@@ -1,6 +1,7 @@
 package com.syedabdullah.newsstream.viewmodel
 
 import com.syedabdullah.newsstream.model.Article
+import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle
 
 class Constant {
@@ -32,6 +33,21 @@ class Constant {
                     false
                 )
             }
+        }
+
+        fun bindNewsArticleToBookMark(newsArticle: NewsArticle):Bookmark{
+            return Bookmark(
+                0,
+                newsArticle.author,
+                newsArticle.content,
+                newsArticle.description,
+                newsArticle.publishedAt,
+                newsArticle.source,
+                newsArticle.title,
+                newsArticle.url,
+                newsArticle.urlToImage,
+                newsArticle.id
+            )
         }
     }
 }

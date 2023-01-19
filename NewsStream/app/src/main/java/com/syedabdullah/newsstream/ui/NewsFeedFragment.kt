@@ -30,11 +30,11 @@ class NewsFeedFragment(private val viewModel: NewsViewModel): Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
+
         recyclerView = binding.recyclerNewsView
         recyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.articles.observe(viewLifecycleOwner,Observer { articles ->
-                binding.recyclerNewsView.adapter = NewsAdapter(viewModel.articles.value!!)
+                binding.recyclerNewsView.adapter = NewsAdapter(viewModel.articles.value!!, viewModel)
         })
     }
 }

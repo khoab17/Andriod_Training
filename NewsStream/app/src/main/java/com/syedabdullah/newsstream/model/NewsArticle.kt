@@ -19,5 +19,5 @@ data class NewsArticle(
     val url: String?,
     val urlToImage: String?,
     val category:String?,
-    val saved:Boolean
+    var saved:Boolean
 )

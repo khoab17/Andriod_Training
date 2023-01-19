@@ -2,16 +2,12 @@ package com.syedabdullah.newsstream.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.tabs.TabLayoutMediator
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.ActivityMainBinding
-import com.syedabdullah.newsstream.ui.adapter.ViewPagerAdapter
-import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController

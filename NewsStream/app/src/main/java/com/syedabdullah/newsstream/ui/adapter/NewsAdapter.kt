@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.model.Article
 import com.syedabdullah.newsstream.model.NewsArticle
@@ -16,9 +18,10 @@ import com.syedabdullah.newsstream.ui.HomeFragment
 import com.syedabdullah.newsstream.ui.HomeFragmentDirections
 import com.syedabdullah.newsstream.ui.NewsFeedFragment
 import com.syedabdullah.newsstream.ui.NewsFeedFragmentDirections
+import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 class NewsAdapter(
-    private val arrayList: List<NewsArticle>
+    private val arrayList: List<NewsArticle>,private val viewModel: NewsViewModel
 ) : RecyclerView.Adapter<NewsAdapter.ItemViewHolder>() {
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -46,6 +49,15 @@ class NewsAdapter(
         holder.itemView.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToNewsDetailsFragment(arrayList[position].url!!)
             holder.itemView.findNavController().navigate(action)
+        }
+
+        holder.itemView.setOnLongClickListener {
+           // Toast.makeText(holder.itemView.context, "News Added to bookmarks", Toast.LENGTH_SHORT).show()
+            viewModel.addOrRemoveBookmark(arrayList[position])
+            if(arrayList[position].saved)
+                Snackbar.make(holder.itemView,"News removed to bookmarks!",Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(holder.itemView,"News Added to bookmarks!",Snackbar.LENGTH_SHORT).show()
+            true
         }
     }
 

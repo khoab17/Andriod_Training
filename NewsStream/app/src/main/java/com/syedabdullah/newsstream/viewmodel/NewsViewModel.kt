@@ -8,7 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.syedabdullah.newsstream.dao.NewsDatabase
-import com.syedabdullah.newsstream.model.Article
+import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle
 import com.syedabdullah.newsstream.network.NewsApi
 import com.syedabdullah.newsstream.repository.NewsRepository
@@ -25,26 +25,17 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
     init {
         val newsDao = NewsDatabase.getDatabase(application).NewsDao()
         repository = NewsRepository(newsDao)
-
-        //_articles.value = repository.getAllNewsArticle()
-//        getDataFromRoom()
-        //getNewsByCategory(Constant.TOP_NEWS)
-//        if(articles.value != null ){
-//            if(articles.value!!.isEmpty())
-//                getArticlesFromApi()
-//        }
+        //getArticlesFromApi()
     }
 
 
     fun getNewsByCategory(category:String){
         viewModelScope.launch(Dispatchers.IO){
             try {
-                Log.d(TAG, "getNewsByCategory: ")
                 val articles = withContext(Dispatchers.IO) {
-                    repository.getAllNewsArticleByCategory(category)
+                 repository.getAllNewsArticleByCategory(category)
                 }
                 _articles.postValue(articles)
-                Log.d(TAG, "getNewsByCategory: ")
             }
             catch (e:Exception){
                 Log.d("view_model", "getDataFromRoom: $e")
@@ -86,6 +77,26 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
             val article = NewsApi.retrofitService.getNewsByCategory(category).articles
             val newsArticle =Constant.bindAllArticleToNewsArticles(article,category)
             repository.addAllNewsArticles(newsArticle)
+        }
+    }
+
+    fun addOrRemoveBookmark(newsArticle: NewsArticle){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                if(newsArticle.saved){
+                    val bookmark = repository.getBookmarkByNewsId(newsArticle.id)
+                    repository.deleteBookmark(bookmark)
+                    newsArticle.saved = false
+                    repository.updateNewsArticle(newsArticle)
+                }
+                else{
+                    val bookmark = Constant.bindNewsArticleToBookMark(newsArticle)
+                    repository.addBookmark(bookmark)
+                    newsArticle.saved = true
+                    repository.updateNewsArticle(newsArticle)
+                }
+            }
+            catch (_:java.lang.Exception){}
         }
     }
 }

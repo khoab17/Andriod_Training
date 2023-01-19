@@ -24,14 +24,13 @@ import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 class HomeFragment : Fragment() {
     private var _binding:FragmentHomeBinding? =null
     private val binding get() = _binding!!
-    //private lateinit var viewModel: NewsViewModel
     private val viewModel: NewsViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding =FragmentHomeBinding.inflate(inflater,container,false)
-        //viewModel = ViewModelProvider(this)[NewsViewModel::class.java]
         return binding.root
     }
 
@@ -57,23 +56,18 @@ class HomeFragment : Fragment() {
                 when(tab.position){
                     0-> {
                         viewModel.getNewsByCategory(TOP_NEWS)
-                        Log.d("home", "onTabSelected: top news")
                     }
                     1-> {
                         viewModel.getNewsByCategory(GENERAL)
-                        Log.d("home", "onTabSelected: general")
                     }
                     2-> {
                         viewModel.getNewsByCategory(BUSINESS)
-                        Log.d("home", "onTabSelected: business")
                     }
                     3-> {
                         viewModel.getNewsByCategory(ENTERTAINMENT)
-                        Log.d("home", "onTabSelected: entertainment")
                     }
                     else->{
                         viewModel.getNewsByCategory(SPORTS)
-                        Log.d("home", "onTabSelected: sports")
                     }
                 }
             }
