@@ -28,8 +28,8 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
         val newsDao = NewsDatabase.getDatabase(application).NewsDao()
         repository = NewsRepository(newsDao)
         getBookmarks()
-        //getArticlesFromApi()
-        Log.d(TAG, "bookmarks: ${bookmarks.value}")
+        getNewsByCategory(Constant.TOP_NEWS)
+       //getArticlesFromApi()
     }
 
 
@@ -77,9 +77,12 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
     private fun getBookmarks(){
         viewModelScope.launch(Dispatchers.IO){
             try {
-                _bookmarks.postValue(repository.getAllBookmark())
-                Log.d(TAG, "getBookmarks: ${bookmarks.value}")
-                Log.d(TAG, "getBookmarks: ${repository.getAllBookmark()}")
+                val bookmarks = withContext(Dispatchers.IO) {
+                    repository.getAllBookmark()
+                }
+                _bookmarks.postValue(bookmarks)
+               //Log.d(TAG, "getBookmarks size: ${bookmarks.size}")
+                //Log.d(TAG, "getBookmarks from repo: ${repository.getAllBookmark()}")
            }
            catch (e:Exception){
                Log.d(TAG, "getBookmarks Exception: $e")

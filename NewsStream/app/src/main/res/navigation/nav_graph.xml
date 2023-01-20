@@ -29,7 +29,7 @@
     <fragment
         android:id="@+id/bookmarkFragment"
         android:name="com.syedabdullah.newsstream.ui.BookmarkFragment"
-        android:label="Bookmark"
+        android:label="Bookmarks"
         tools:layout="@layout/fragment_bookmark" >
         <action
             android:id="@+id/action_bookmarkFragment_to_homeFragment"

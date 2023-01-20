@@ -34,7 +34,7 @@ class BookmarkFragment : Fragment() {
 
         recyclerView = binding.recyclerBookmarkView
         recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.articles.observe(viewLifecycleOwner, Observer { articles ->
+        viewModel.bookmarks.observe(viewLifecycleOwner, Observer { articles ->
             binding.recyclerBookmarkView.adapter = BookmarkAdapter(viewModel.bookmarks.value!!, viewModel)
         })
 

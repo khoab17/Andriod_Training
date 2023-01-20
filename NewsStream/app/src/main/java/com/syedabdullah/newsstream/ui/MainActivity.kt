@@ -3,6 +3,7 @@ package com.syedabdullah.newsstream.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         setupActionBarWithNavController(navController)
 
-        val bottomNav = binding.bottomNav as BottomNavigationView
+        val bottomNav = binding.bottomNav
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {

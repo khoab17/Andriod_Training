@@ -33,7 +33,7 @@ interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addBookmark(bookmark: Bookmark)
 
-    @Query("SELECT * FROM bookmark")
+    @Query("SELECT * FROM bookmark ORDER  BY id DESC")
     fun getAllBookmarks():List<Bookmark>
 
     @Query("SELECT * FROM bookmark WHERE newsId=:newsId")

@@ -48,9 +48,11 @@ class NewsAdapter(
         holder.itemView.setOnLongClickListener {
            // Toast.makeText(holder.itemView.context, "News Added to bookmarks", Toast.LENGTH_SHORT).show()
             viewModel.addOrRemoveBookmark(arrayList[position])
-            if(arrayList[position].saved)
+            if(arrayList[position].saved){
                 Snackbar.make(holder.itemView,"News removed to bookmarks!",Snackbar.LENGTH_SHORT).show()
-            Snackbar.make(holder.itemView,"News Added to bookmarks!",Snackbar.LENGTH_SHORT).show()
+            }
+            else
+                Snackbar.make(holder.itemView,"News Added to bookmarks!",Snackbar.LENGTH_SHORT).show()
             true
         }
     }

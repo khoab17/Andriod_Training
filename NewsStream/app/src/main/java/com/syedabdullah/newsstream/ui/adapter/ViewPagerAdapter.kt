@@ -12,15 +12,12 @@ private const val NUMS_TAB = 5
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, private val viewModel: NewsViewModel):
     FragmentStateAdapter(fragmentManager, lifecycle)
 {
-
     override fun getItemCount(): Int {
         return NUMS_TAB
     }
 
-
     override fun createFragment(position: Int): Fragment {
         return NewsFeedFragment( viewModel )
     }
-
 
 }
