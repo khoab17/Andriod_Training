@@ -27,7 +27,9 @@ import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 class HomeFragment : Fragment() {
     private var _binding:FragmentHomeBinding? =null
     private val binding get() = _binding!!
-    private val viewModel: NewsViewModel by viewModels()
+//    private val viewModel: NewsViewModel by viewModels{
+//    }
+    private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +41,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(requireActivity())[NewsViewModel::class.java]
         val tabLayout = binding.tabLayout
         val viewPage = binding.viewPager
 

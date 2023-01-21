@@ -27,6 +27,7 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
     init {
         val newsDao = NewsDatabase.getDatabase(application).NewsDao()
         repository = NewsRepository(newsDao)
+        Log.d(TAG, "init calling: ")
     }
 
 
