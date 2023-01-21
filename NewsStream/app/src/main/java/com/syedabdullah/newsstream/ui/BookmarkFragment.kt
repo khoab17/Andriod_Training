@@ -31,7 +31,7 @@ class BookmarkFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getBookmarks()
         recyclerView = binding.recyclerBookmarkView
         recyclerView.layoutManager = LinearLayoutManager(context)
         viewModel.bookmarks.observe(viewLifecycleOwner, Observer { articles ->

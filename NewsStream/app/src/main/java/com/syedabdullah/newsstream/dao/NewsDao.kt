@@ -8,7 +8,7 @@ import com.syedabdullah.newsstream.model.NewsArticle
 @Dao
 interface NewsDao {
     //CRUD operation for news_article table
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addNewsArticle(newsArticle: NewsArticle)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -20,6 +20,9 @@ interface NewsDao {
     @Query("SELECT * FROM news_article WHERE category=:category")
     fun getAllNewsByCategory(category:String):List<NewsArticle>
 
+    @Query("SELECT * FROM news_article WHERE url=:url")
+    fun getNewsArticleByUrl(url:String):NewsArticle?
+
     @Update
     suspend fun updateNewsArticle(newsArticle: NewsArticle)
 
@@ -30,7 +33,7 @@ interface NewsDao {
     suspend fun deleteAllNewsArticle()
 
     //CRUD operation for bookmark
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun addBookmark(bookmark: Bookmark)
 
     @Query("SELECT * FROM bookmark ORDER  BY id DESC")

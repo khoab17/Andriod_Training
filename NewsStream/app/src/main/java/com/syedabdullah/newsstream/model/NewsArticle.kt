@@ -1,11 +1,12 @@
 package com.syedabdullah.newsstream.model
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.syedabdullah.newsstream.dao.Converters
 
-@Entity(tableName = "news_article")
+@Entity(tableName = "news_article",indices = [Index(value = ["url"], unique = true)])
 data class NewsArticle(
     @PrimaryKey(autoGenerate = true)
     val id: Int,

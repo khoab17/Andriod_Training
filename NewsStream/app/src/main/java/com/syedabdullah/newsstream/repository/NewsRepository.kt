@@ -1,6 +1,7 @@
 package com.syedabdullah.newsstream.repository
 
 import androidx.lifecycle.LiveData
+import androidx.room.Query
 import com.syedabdullah.newsstream.dao.NewsDao
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.News
@@ -23,6 +24,10 @@ class NewsRepository(private val newsDao: NewsDao) {
 
     fun getAllNewsArticleByCategory(category:String):List<NewsArticle>{
         return newsDao.getAllNewsByCategory(category)
+    }
+
+    fun getNewsArticleByUrl(url:String):NewsArticle?{
+        return newsDao.getNewsArticleByUrl(url)
     }
 
     suspend fun updateNewsArticle(newsArticle: NewsArticle){
@@ -57,6 +62,7 @@ class NewsRepository(private val newsDao: NewsDao) {
         newsDao.deleteBookmark(bookmark)
     }
 
+    @Query("DELETE FROM bookmark")
     suspend fun deleteAllBookmarks(){
         newsDao.deleteAllBookmarks()
     }

@@ -1,6 +1,5 @@
 package com.syedabdullah.newsstream.ui.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,13 +10,9 @@ import com.bumptech.glide.Glide
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
-private const val TAG = "b_adapter"
+
 class BookmarkAdapter(private val bookmarks: List<Bookmark>, private val viewModel:NewsViewModel)
     :RecyclerView.Adapter<BookmarkAdapter.ItemViewHolder>() {
-
-    init {
-        Log.d(TAG, "Bookmark Adapter: ${bookmarks[0]} ")
-    }
 
     class ItemViewHolder(view:View):RecyclerView.ViewHolder(view){
         val title: TextView = view.findViewById(R.id.tv_title_bookmark)

@@ -27,17 +27,32 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
     init {
         val newsDao = NewsDatabase.getDatabase(application).NewsDao()
         repository = NewsRepository(newsDao)
-        getBookmarks()
-        getNewsByCategory(Constant.TOP_NEWS)
-       //getArticlesFromApi()
     }
 
 
+    //APIs data fetching==================================================
+    fun fetchApiNewsByCategory(category:String){
+        viewModelScope.launch {
+            if(category == Constant.TOP_NEWS)
+            {
+                val articles = NewsApi.retrofitService.getTopHeadlineNews().articles
+                val newsArticle = Constant.bindAllArticleToNewsArticles(articles, Constant.TOP_NEWS)
+                repository.addAllNewsArticles(newsArticle)
+            }
+            else{
+                val article = NewsApi.retrofitService.getNewsByCategory(category).articles
+                val newsArticle =Constant.bindAllArticleToNewsArticles(article,category)
+                repository.addAllNewsArticles(newsArticle)
+            }
+        }
+    }
+
+    //Getting data's from ROOM db============================================
     fun getNewsByCategory(category:String){
         viewModelScope.launch(Dispatchers.IO){
             try {
                 val articles = withContext(Dispatchers.IO) {
-                 repository.getAllNewsArticleByCategory(category)
+                    repository.getAllNewsArticleByCategory(category)
                 }
                 _articles.postValue(articles)
             }
@@ -47,48 +62,20 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
-    private fun getArticlesFromApi() {
-        viewModelScope.launch{
-            try {
-                repository.deleteAllNewsArticle()
-                val temp = NewsApi.retrofitService.getTopHeadlineNews().articles
-                val temp2 = Constant.bindAllArticleToNewsArticles(temp, Constant.TOP_NEWS)
-                repository.addAllNewsArticles(temp2)
-                fetchNewsByCategory(Constant.GENERAL)
-                fetchNewsByCategory(Constant.BUSINESS)
-                fetchNewsByCategory(Constant.ENTERTAINMENT)
-                fetchNewsByCategory(Constant.SPORTS)
-
-            } catch (e: Exception) {
-                _articles.value = listOf()
-            }
-        }
-    }
-
-
-    private fun fetchNewsByCategory(category:String){
-        viewModelScope.launch {
-            val article = NewsApi.retrofitService.getNewsByCategory(category).articles
-            val newsArticle =Constant.bindAllArticleToNewsArticles(article,category)
-            repository.addAllNewsArticles(newsArticle)
-        }
-    }
-
-    private fun getBookmarks(){
+    fun getBookmarks(){
         viewModelScope.launch(Dispatchers.IO){
             try {
                 val bookmarks = withContext(Dispatchers.IO) {
                     repository.getAllBookmark()
                 }
                 _bookmarks.postValue(bookmarks)
-               //Log.d(TAG, "getBookmarks size: ${bookmarks.size}")
-                //Log.d(TAG, "getBookmarks from repo: ${repository.getAllBookmark()}")
            }
            catch (e:Exception){
                Log.d(TAG, "getBookmarks Exception: $e")
            }
         }
     }
+
     fun addOrRemoveBookmark(newsArticle: NewsArticle){
         viewModelScope.launch(Dispatchers.IO) {
             try {

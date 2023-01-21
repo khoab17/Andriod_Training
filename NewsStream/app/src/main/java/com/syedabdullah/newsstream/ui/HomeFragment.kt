@@ -39,6 +39,7 @@ class HomeFragment : Fragment() {
         val tabLayout = binding.tabLayout
         val viewPage = binding.viewPager
 
+        viewModel.getNewsByCategory(TOP_NEWS)
         val tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, viewModel)
         viewPage.adapter = tabAdapter
         TabLayoutMediator(tabLayout, viewPage) { tab, position ->
@@ -79,7 +80,6 @@ class HomeFragment : Fragment() {
             }
 
         }
-
         )
     }
 }

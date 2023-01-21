@@ -1,6 +1,7 @@
 package com.syedabdullah.newsstream.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +16,7 @@ import com.syedabdullah.newsstream.model.Article
 import com.syedabdullah.newsstream.ui.adapter.NewsAdapter
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
-class NewsFeedFragment(private val viewModel: NewsViewModel): Fragment() {
+class NewsFeedFragment(private val viewModel: NewsViewModel,private val selectedTabCategory:String): Fragment() {
     private var _binding : FragmentNewsFeedBinding? = null
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
@@ -36,5 +37,12 @@ class NewsFeedFragment(private val viewModel: NewsViewModel): Fragment() {
         viewModel.articles.observe(viewLifecycleOwner,Observer { articles ->
                 binding.recyclerNewsView.adapter = NewsAdapter(viewModel.articles.value!!, viewModel)
         })
+
+        val swipeToRefresh = binding.swipeToRefresh
+        swipeToRefresh.setOnRefreshListener {
+            Log.d("news", "onViewCreated:  ")
+            viewModel.fetchApiNewsByCategory(selectedTabCategory)
+            swipeToRefresh.isRefreshing =false
+        }
     }
 }
