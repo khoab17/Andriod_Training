@@ -8,13 +8,15 @@ import com.syedabdullah.newsstream.ui.NewsFeedFragment
 import com.syedabdullah.newsstream.viewmodel.Constant
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
-private const val NUMS_TAB = 5
+
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, private val viewModel: NewsViewModel):
     FragmentStateAdapter(fragmentManager, lifecycle)
 {
+    private val tabs = 5
+
     override fun getItemCount(): Int {
-        return NUMS_TAB
+        return tabs
     }
 
     override fun createFragment(position: Int): Fragment {

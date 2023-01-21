@@ -11,8 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.databinding.FragmentNewsFeedBinding
 import com.syedabdullah.newsstream.model.Article
+import com.syedabdullah.newsstream.network.InternetConnection
 import com.syedabdullah.newsstream.ui.adapter.NewsAdapter
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
@@ -40,8 +42,12 @@ class NewsFeedFragment(private val viewModel: NewsViewModel,private val selected
 
         val swipeToRefresh = binding.swipeToRefresh
         swipeToRefresh.setOnRefreshListener {
-            Log.d("news", "onViewCreated:  ")
-            viewModel.fetchApiNewsByCategory(selectedTabCategory)
+            if(InternetConnection.isOnline(requireContext())){
+                viewModel.fetchApiNewsByCategory(selectedTabCategory)
+            }
+            else{
+                Snackbar.make(view,"Please Check Your Internet Connection !", Snackbar.LENGTH_LONG).show()
+            }
             swipeToRefresh.isRefreshing =false
         }
     }

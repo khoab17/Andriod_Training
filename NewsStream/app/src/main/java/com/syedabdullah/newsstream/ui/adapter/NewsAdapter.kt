@@ -35,10 +35,19 @@ class NewsAdapter(
         holder.description.text = arrayList[position].description
         holder.date.text = arrayList[position].publishedAt
 
-        Glide.with(holder.itemView.context)
-            .load(arrayList[position].urlToImage)
-            .placeholder(R.drawable.loading_animation)
-            .into(holder.image)
+        if(arrayList[position].urlToImage !=null ){
+            Glide.with(holder.itemView.context)
+                .load(arrayList[position].urlToImage)
+                .override(120,120)
+                .placeholder(R.drawable.loading_animation)
+                .error(R.drawable.no_image_available)
+                .into(holder.image)
+        }
+        else{
+            Glide.with(holder.itemView.context)
+                .load(R.drawable.no_image_available).centerCrop()
+                .into(holder.image)
+        }
 
         holder.itemView.setOnClickListener {
             val action = HomeFragmentDirections.actionHomeFragmentToNewsDetailsFragment(arrayList[position].url!!)

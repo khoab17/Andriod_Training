@@ -9,10 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.syedabdullah.newsstream.databinding.FragmentHomeBinding
+import com.syedabdullah.newsstream.network.InternetConnection
 import com.syedabdullah.newsstream.ui.adapter.ViewPagerAdapter
+import com.syedabdullah.newsstream.viewmodel.Constant
 import com.syedabdullah.newsstream.viewmodel.Constant.Companion.BUSINESS
 import com.syedabdullah.newsstream.viewmodel.Constant.Companion.ENTERTAINMENT
 import com.syedabdullah.newsstream.viewmodel.Constant.Companion.GENERAL
@@ -38,6 +41,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val tabLayout = binding.tabLayout
         val viewPage = binding.viewPager
+
+        //Checking Internet Connection when the app load the home page.
+        if(InternetConnection.isOnline(requireContext())){
+            viewModel.fetchApiNewsByCategory(TOP_NEWS)
+        }
+        else{
+            Snackbar.make(tabLayout,"No Internet Connection !!!", Snackbar.LENGTH_LONG).show()
+        }
 
         viewModel.getNewsByCategory(TOP_NEWS)
         val tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, viewModel)

@@ -33,16 +33,23 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
     //APIs data fetching==================================================
     fun fetchApiNewsByCategory(category:String){
         viewModelScope.launch {
-            if(category == Constant.TOP_NEWS)
-            {
-                val articles = NewsApi.retrofitService.getTopHeadlineNews().articles
-                val newsArticle = Constant.bindAllArticleToNewsArticles(articles, Constant.TOP_NEWS)
-                repository.addAllNewsArticles(newsArticle)
+            try {
+                if(category == Constant.TOP_NEWS)
+                {
+                    val articles = NewsApi.retrofitService.getTopHeadlineNews().articles
+                    val newsArticle = Constant.bindAllArticleToNewsArticles(articles, Constant.TOP_NEWS)
+                    repository.addAllNewsArticles(newsArticle)
+                    _articles.postValue(newsArticle)
+                }
+                else{
+                    val article = NewsApi.retrofitService.getNewsByCategory(category).articles
+                    val newsArticle =Constant.bindAllArticleToNewsArticles(article,category)
+                    repository.addAllNewsArticles(newsArticle)
+                    _articles.postValue(newsArticle)
+                }
             }
-            else{
-                val article = NewsApi.retrofitService.getNewsByCategory(category).articles
-                val newsArticle =Constant.bindAllArticleToNewsArticles(article,category)
-                repository.addAllNewsArticles(newsArticle)
+            catch (e:Exception) {
+                Log.d(TAG, "fetchApiNewsByCategory: $e")
             }
         }
     }
