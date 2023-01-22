@@ -1,5 +1,6 @@
 package com.syedabdullah.newsstream.ui.adapter
 
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
@@ -20,13 +21,24 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, p
     }
 
     override fun createFragment(position: Int): Fragment {
-        return when (position){
-            0->NewsFeedFragment(viewModel,Constant.TOP_NEWS)
-            1->NewsFeedFragment(viewModel,Constant.GENERAL)
-            2->NewsFeedFragment(viewModel,Constant.BUSINESS)
-            3->NewsFeedFragment(viewModel,Constant.ENTERTAINMENT)
-            else->NewsFeedFragment(viewModel,Constant.SPORTS)
+        val bundle = Bundle()
+        when (position){
+            0->{
+                bundle.putString("selected_category",Constant.TOP_NEWS)
+            }1->{
+            bundle.putString("selected_category",Constant.GENERAL)
+            }2->{
+                bundle.putString("selected_category",Constant.BUSINESS)
+            }3->{
+                bundle.putString("selected_category",Constant.ENTERTAINMENT)
+            }
+            else->{
+                bundle.putString("selected_category",Constant.SPORTS)
+            }
         }
+        val fragment = NewsFeedFragment()
+        fragment.arguments = bundle
+        return fragment
     }
 
 }

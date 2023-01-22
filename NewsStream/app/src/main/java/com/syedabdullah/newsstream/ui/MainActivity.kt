@@ -2,12 +2,23 @@ package com.syedabdullah.newsstream.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.ActivityMainBinding
+import com.syedabdullah.newsstream.network.InternetConnection
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.BUSINESS
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.ENTERTAINMENT
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.GENERAL
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.SPORTS
+import com.syedabdullah.newsstream.viewmodel.Constant.Companion.TOP_NEWS
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -39,9 +50,53 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+
+        //Checking Internet Connection when the app load the home page.
+        if(InternetConnection.isOnline(this)){
+            //viewModel.fetchApiNewsByCategory(TOP_NEWS)
+            fetchAllNewsApi()
+        }
+        else{
+            Snackbar.make(binding.bottomNav,"No Internet Connection !!!", Snackbar.LENGTH_LONG).show()
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.top_menu_bar, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        if (searchItem != null) {
+            val searchView = searchItem.actionView as SearchView
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    Snackbar.make(binding.bottomNav,"$query submit!",Snackbar.LENGTH_SHORT).show()
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    // Snackbar.make(binding.bottomNav,"$newText change!",Snackbar.LENGTH_SHORT).show()
+                    if (!newText.isNullOrEmpty()) {
+                        if(newText.length > 1){
+
+                        }
+                    }
+                    return false
+                }
+            })
+        }
+        return true
+    }
+
+    private fun fetchAllNewsApi(){
+        viewModel.fetchApiNewsByCategory(GENERAL)
+        viewModel.fetchApiNewsByCategory(BUSINESS)
+        viewModel.fetchApiNewsByCategory(ENTERTAINMENT)
+        viewModel.fetchApiNewsByCategory(SPORTS)
+        viewModel.fetchApiNewsByCategory(TOP_NEWS)
+    }
+
 }

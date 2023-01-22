@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_newsFeedFragment_to_newsDetailsFragment"
             app:destination="@id/newsDetailsFragment" />
+        <argument
+            android:name="selected_category"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/bookmarkFragment"
@@ -44,7 +47,7 @@
             android:id="@+id/action_newsDetailsFragment_to_newsFeedFragment"
             app:destination="@id/newsFeedFragment" />
         <argument
-            android:name="source_url"
-            app:argType="string" />
+            android:name="article"
+            app:argType="com.syedabdullah.newsstream.model.NewsArticle" />
     </fragment>
 </navigation>

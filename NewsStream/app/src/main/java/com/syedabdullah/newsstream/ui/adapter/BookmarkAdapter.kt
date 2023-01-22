@@ -16,7 +16,7 @@ class BookmarkAdapter(private val bookmarks: List<Bookmark>, private val viewMod
 
     class ItemViewHolder(view:View):RecyclerView.ViewHolder(view){
         val title: TextView = view.findViewById(R.id.tv_title_bookmark)
-        val image: ImageView = view.findViewById(R.id.image_view_image_bookmark)
+        val image: ImageView = view.findViewById(R.id.image_view_bookmark)
         val description: TextView = view.findViewById(R.id.tv_description_bookmark)
         val date: TextView = view.findViewById(R.id.tv_date_bookmark)
     }
@@ -33,7 +33,7 @@ class BookmarkAdapter(private val bookmarks: List<Bookmark>, private val viewMod
 
         Glide.with(holder.itemView.context)
             .load(bookmarks[position].urlToImage)
-            .placeholder(R.drawable.loading_animation)
+            .placeholder(R.drawable.loading_animation).centerCrop()
             .into(holder.image)
     }
 

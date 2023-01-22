@@ -5,15 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.FragmentBookmarkBinding
 import com.syedabdullah.newsstream.ui.adapter.BookmarkAdapter
-import com.syedabdullah.newsstream.ui.adapter.NewsAdapter
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 class BookmarkFragment : Fragment() {
@@ -36,7 +33,7 @@ class BookmarkFragment : Fragment() {
         viewModel.getBookmarks()
         recyclerView = binding.recyclerBookmarkView
         recyclerView.layoutManager = LinearLayoutManager(context)
-        viewModel.bookmarks.observe(viewLifecycleOwner, Observer { articles ->
+        viewModel.bookmarks.observe(viewLifecycleOwner, Observer {
             binding.recyclerBookmarkView.adapter = BookmarkAdapter(viewModel.bookmarks.value!!, viewModel)
         })
 

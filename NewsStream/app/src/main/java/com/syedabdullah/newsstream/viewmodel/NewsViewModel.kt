@@ -40,13 +40,13 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
                     val articles = NewsApi.retrofitService.getTopHeadlineNews().articles
                     val newsArticle = Constant.bindAllArticleToNewsArticles(articles, Constant.TOP_NEWS)
                     repository.addAllNewsArticles(newsArticle)
-                    _articles.postValue(newsArticle)
+                    _articles.postValue(repository.getAllNewsArticleByCategory(Constant.TOP_NEWS))
                 }
                 else{
                     val article = NewsApi.retrofitService.getNewsByCategory(category).articles
                     val newsArticle =Constant.bindAllArticleToNewsArticles(article,category)
                     repository.addAllNewsArticles(newsArticle)
-                    _articles.postValue(newsArticle)
+                    _articles.postValue(repository.getAllNewsArticleByCategory(category))
                 }
             }
             catch (e:Exception) {
@@ -104,4 +104,10 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
             catch (_:java.lang.Exception){}
         }
     }
+
+//    fun searchNews(text:String){
+//        for(i in articles){
+//
+//        }
+//    }
 }

@@ -27,8 +27,7 @@ import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 class HomeFragment : Fragment() {
     private var _binding:FragmentHomeBinding? =null
     private val binding get() = _binding!!
-//    private val viewModel: NewsViewModel by viewModels{
-//    }
+
     private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
@@ -42,18 +41,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity())[NewsViewModel::class.java]
+        viewModel.getNewsByCategory(TOP_NEWS)
         val tabLayout = binding.tabLayout
         val viewPage = binding.viewPager
-
-        //Checking Internet Connection when the app load the home page.
-        if(InternetConnection.isOnline(requireContext())){
-            viewModel.fetchApiNewsByCategory(TOP_NEWS)
-        }
-        else{
-            Snackbar.make(tabLayout,"No Internet Connection !!!", Snackbar.LENGTH_LONG).show()
-        }
-
-        viewModel.getNewsByCategory(TOP_NEWS)
         val tabAdapter = ViewPagerAdapter(childFragmentManager, lifecycle, viewModel)
         viewPage.adapter = tabAdapter
         TabLayoutMediator(tabLayout, viewPage) { tab, position ->
@@ -96,4 +86,5 @@ class HomeFragment : Fragment() {
         }
         )
     }
+
 }
