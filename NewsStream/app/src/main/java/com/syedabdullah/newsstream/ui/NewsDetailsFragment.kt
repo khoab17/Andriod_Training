@@ -12,9 +12,9 @@ import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.FragmentNewsDetailsBinding
 
 class NewsDetailsFragment : Fragment() {
-    private var _binding:FragmentNewsDetailsBinding? = null
+    private var _binding: FragmentNewsDetailsBinding? = null
     private val binding get() = _binding!!
-    private val navArgs:NewsDetailsFragmentArgs by navArgs()
+    private val navArgs: NewsDetailsFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,24 +26,20 @@ class NewsDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //binding.webViewNewsDetails.loadUrl(navArgs)
-        Log.d("info", "onViewCreated: ${navArgs.article}")
-        if(navArgs.article.urlToImage !=null ){
+        if (navArgs.article.urlToImage != null) {
             Glide.with(requireContext())
                 .load(navArgs.article.urlToImage)
                 .placeholder(R.drawable.loading_animation).centerCrop()
                 .error(R.drawable.no_image_available)
                 .into(binding.imageNewsDetails)
-        }
-        else{
+        } else {
             Glide.with(requireContext())
                 .load(R.drawable.no_image_available)
                 .into(binding.imageNewsDetails)
         }
-        Log.d("info", "onViewCreated: ${navArgs.article.title+"=========="+navArgs.article.description}")
-        binding.tvTitleNewsDetails.text = navArgs.article.title.toString()
-        binding.tvDescriptionNewsDetails.text = navArgs.article.description.toString()
-        binding.dateNewsDetails.text =navArgs.article.publishedAt
+        binding.tvTitleNewsDetails.text = navArgs.article.title
+        binding.tvDescriptionNewsDetails.text = navArgs.article.description
+        binding.dateNewsDetails.text = navArgs.article.publishedAt
 
     }
 }

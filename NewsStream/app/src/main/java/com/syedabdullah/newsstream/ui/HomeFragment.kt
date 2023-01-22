@@ -2,16 +2,16 @@ package com.syedabdullah.newsstream.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.FragmentHomeBinding
 import com.syedabdullah.newsstream.network.InternetConnection
 import com.syedabdullah.newsstream.ui.adapter.ViewPagerAdapter
@@ -27,9 +27,14 @@ import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 class HomeFragment : Fragment() {
     private var _binding:FragmentHomeBinding? =null
     private val binding get() = _binding!!
+    private var currentTab =Constant.TOP_NEWS
 
     private lateinit var viewModel: NewsViewModel
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,18 +66,23 @@ class HomeFragment : Fragment() {
                 when(tab.position){
                     0-> {
                         viewModel.getNewsByCategory(TOP_NEWS)
+                        currentTab= TOP_NEWS
                     }
                     1-> {
                         viewModel.getNewsByCategory(GENERAL)
+                        currentTab = GENERAL
                     }
                     2-> {
                         viewModel.getNewsByCategory(BUSINESS)
+                        currentTab = BUSINESS
                     }
                     3-> {
                         viewModel.getNewsByCategory(ENTERTAINMENT)
+                        currentTab = ENTERTAINMENT
                     }
-                    else->{
+                    else-> {
                         viewModel.getNewsByCategory(SPORTS)
+                        currentTab = SPORTS
                     }
                 }
             }
@@ -85,6 +95,29 @@ class HomeFragment : Fragment() {
 
         }
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.top_menu_bar, menu)
+        val item = menu?.findItem(R.id.action_search)
+        val searchView = item?.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                //Snackbar.make(binding.tabLayout,"$query submit!",Snackbar.LENGTH_SHORT).show()
+                viewModel.searchNews(query.toString())
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                //Snackbar.make(binding.tabLayout,"$newText submit!",Snackbar.LENGTH_SHORT).show()
+                if(newText.isEmpty()){
+                    viewModel.getNewsByCategory(currentTab)
+                }
+                return true
+            }
+
+        })
+        super.onCreateOptionsMenu(menu, inflater)
     }
 
 }

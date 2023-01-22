@@ -15,6 +15,7 @@ import com.syedabdullah.newsstream.repository.NewsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.*
 
 private const val TAG ="view_model"
 class NewsViewModel(application: Application):AndroidViewModel(application) {
@@ -105,9 +106,17 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
         }
     }
 
-//    fun searchNews(text:String){
-//        for(i in articles){
-//
-//        }
-//    }
+    fun searchNews(text:String):List<NewsArticle>{
+        var list:List<NewsArticle> = _articles.value!!
+        val result = mutableListOf<NewsArticle>()
+        for(i in list){
+            if(i.title!!.lowercase(Locale.ROOT).contains(text.lowercase(Locale.ROOT)))
+            {
+                result.add(i)
+            }
+        }
+        _articles.value = result
+        return list
+    }
+
 }

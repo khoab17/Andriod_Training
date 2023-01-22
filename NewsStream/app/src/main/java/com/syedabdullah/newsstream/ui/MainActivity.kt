@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.ActivityMainBinding
+import com.syedabdullah.newsstream.model.NewsArticle
 import com.syedabdullah.newsstream.network.InternetConnection
 import com.syedabdullah.newsstream.viewmodel.Constant.Companion.BUSINESS
 import com.syedabdullah.newsstream.viewmodel.Constant.Companion.ENTERTAINMENT
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private var _binding:ActivityMainBinding? = null
     private val binding get() = _binding!!
     private val viewModel: NewsViewModel by viewModels()
+    private var reserveData:List<NewsArticle> = listOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 
+/*
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.top_menu_bar, menu)
@@ -81,8 +84,11 @@ class MainActivity : AppCompatActivity() {
                     // Snackbar.make(binding.bottomNav,"$newText change!",Snackbar.LENGTH_SHORT).show()
                     if (!newText.isNullOrEmpty()) {
                         if(newText.length > 1){
-
+                            reserveData = viewModel.searchNews(newText)
                         }
+//                        else{
+//                            viewModel.updateNewsArticles(reserveData)
+//                        }
                     }
                     return false
                 }
@@ -90,6 +96,7 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+*/
 
     private fun fetchAllNewsApi(){
         viewModel.fetchApiNewsByCategory(GENERAL)
