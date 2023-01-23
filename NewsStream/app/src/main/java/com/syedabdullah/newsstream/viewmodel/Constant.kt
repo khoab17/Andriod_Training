@@ -3,6 +3,8 @@ package com.syedabdullah.newsstream.viewmodel
 import com.syedabdullah.newsstream.model.Article
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle
+import java.text.SimpleDateFormat
+import java.util.*
 
 class Constant {
     companion object {
@@ -44,8 +46,44 @@ class Constant {
                 newsArticle.title,
                 newsArticle.url,
                 newsArticle.urlToImage,
-                newsArticle.id
+                newsArticle.id,
+                newsArticle.category
             )
+        }
+
+        fun bindBookmarkToNewsArticle(bookmark: Bookmark):NewsArticle{
+            return NewsArticle(
+                bookmark.newsId,
+                bookmark.author,
+                bookmark.content,
+                bookmark.description,
+                bookmark.publishedAt,
+                bookmark.title,
+                bookmark.url,
+                bookmark.urlToImage,
+                bookmark.category,
+                true
+            )
+        }
+
+        fun dateFormat(date: String): String{
+
+            val dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+            if(date.length ==dateFormat.length){
+                return ""
+            }
+            val sdf = SimpleDateFormat(dateFormat, Locale.getDefault())
+            val inputTime = sdf.parse(date).time
+            val currentTime = System.currentTimeMillis()
+            val difference = currentTime - inputTime
+            val hoursAgo = (difference / (1000 * 60 * 60)).toInt()
+            val daysAgo = (difference / (1000 * 60 * 60*24)).toInt()
+
+            return if (hoursAgo<25){
+                ("$hoursAgo hours ago")
+            } else{
+                ("$daysAgo days ago")
+            }
         }
     }
 }

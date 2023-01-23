@@ -15,5 +15,6 @@ data class Bookmark(
     val title: String?,
     val url: String?,
     val urlToImage: String?,
-    val newsId:Int
+    val newsId:Int,
+    val category:String
 )

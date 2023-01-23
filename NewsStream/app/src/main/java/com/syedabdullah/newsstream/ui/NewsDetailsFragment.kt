@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.syedabdullah.newsstream.R
@@ -41,5 +42,9 @@ class NewsDetailsFragment : Fragment() {
         binding.tvDescriptionNewsDetails.text = navArgs.article.description
         binding.dateNewsDetails.text = navArgs.article.publishedAt
 
+        binding.buttonContinueReading.setOnClickListener {
+            val action = NewsDetailsFragmentDirections.actionNewsDetailsFragmentToWebViewFragment(navArgs.article.url!!)
+            findNavController().navigate(action)
+        }
     }
 }

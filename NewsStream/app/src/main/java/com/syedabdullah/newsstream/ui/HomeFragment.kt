@@ -1,19 +1,14 @@
 package com.syedabdullah.newsstream.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.FragmentHomeBinding
-import com.syedabdullah.newsstream.network.InternetConnection
 import com.syedabdullah.newsstream.ui.adapter.ViewPagerAdapter
 import com.syedabdullah.newsstream.viewmodel.Constant
 import com.syedabdullah.newsstream.viewmodel.Constant.Companion.BUSINESS
@@ -103,13 +98,11 @@ class HomeFragment : Fragment() {
         val searchView = item?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                //Snackbar.make(binding.tabLayout,"$query submit!",Snackbar.LENGTH_SHORT).show()
                 viewModel.searchNews(query.toString())
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
-                //Snackbar.make(binding.tabLayout,"$newText submit!",Snackbar.LENGTH_SHORT).show()
                 if(newText.isEmpty()){
                     viewModel.getNewsByCategory(currentTab)
                 }

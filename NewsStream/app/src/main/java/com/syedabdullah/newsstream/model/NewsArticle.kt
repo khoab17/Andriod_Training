@@ -18,6 +18,6 @@ data class NewsArticle(
     val title: String?,
     val url: String?,
     val urlToImage: String?,
-    val category:String?,
+    val category:String,
     var saved:Boolean
 ):Parcelable

@@ -5,7 +5,7 @@ import androidx.room.*
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle
 
-@Database(entities = [NewsArticle::class, Bookmark::class], version = 14, exportSchema = false)
+@Database(entities = [NewsArticle::class, Bookmark::class], version = 15, exportSchema = false)
 abstract class NewsDatabase:RoomDatabase() {
 
     abstract fun NewsDao():NewsDao
