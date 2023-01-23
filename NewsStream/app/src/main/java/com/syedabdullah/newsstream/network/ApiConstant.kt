@@ -2,7 +2,7 @@ package com.syedabdullah.newsstream.network
 
 class ApiConstant {
     companion object{
-       const val KEY="527eefcbc662498588aa1e20d4edb7ad"
+       const val KEY="90356cc9afa94b2ba9ac56ba7b5fe2b0"
        const val BASE_URL="https://newsapi.org"
     }
 }

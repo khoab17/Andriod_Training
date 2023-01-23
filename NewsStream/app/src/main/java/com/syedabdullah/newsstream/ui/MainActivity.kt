@@ -10,6 +10,8 @@ import androidx.appcompat.widget.SearchView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.ActivityMainBinding
@@ -21,6 +23,8 @@ import com.syedabdullah.newsstream.viewmodel.Constant.Companion.GENERAL
 import com.syedabdullah.newsstream.viewmodel.Constant.Companion.SPORTS
 import com.syedabdullah.newsstream.viewmodel.Constant.Companion.TOP_NEWS
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
+import com.syedabdullah.newsstream.workers.ApiWorker
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
@@ -33,6 +37,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val work = PeriodicWorkRequestBuilder<ApiWorker>(2, TimeUnit.MINUTES)
+            .build()
+        WorkManager.getInstance(this).enqueue(work)
 
         val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragmentContainer.id) as NavHostFragment
         navController = navHostFragment.navController
