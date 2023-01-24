@@ -52,11 +52,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         //Checking Internet Connection when the app load the home page.
-        if(InternetConnection.isOnline(this)){
-            fetchAllNewsApi()
+        if(!InternetConnection.isOnline(this)){
+            Snackbar.make(binding.bottomNav,"No Internet Connection !!!", Snackbar.LENGTH_LONG).show()
         }
         else{
-            Snackbar.make(binding.bottomNav,"No Internet Connection !!!", Snackbar.LENGTH_LONG).show()
+            fetchAllNewsApi()
+            viewModel.getNewsByCategory(TOP_NEWS)
         }
     }
 
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             .build()
         val myRequest= PeriodicWorkRequest.Builder(
             ApiWorker::class.java,
-            15,
+            300,
             TimeUnit.MINUTES
         ).setConstraints(constraint).build()
 
