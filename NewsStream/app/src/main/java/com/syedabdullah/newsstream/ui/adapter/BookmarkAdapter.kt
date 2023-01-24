@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.ui.BookmarkFragmentDirections
@@ -48,6 +49,7 @@ class BookmarkAdapter(private val bookmarks: List<Bookmark>, private val viewMod
 
         holder.itemView.setOnLongClickListener {
             viewModel.addOrRemoveBookmark(Constant.bindBookmarkToNewsArticle(bookmarks[position]))
+            Snackbar.make(holder.itemView,"News removed from bookmarks!", Snackbar.LENGTH_SHORT).show()
             true
         }
     }

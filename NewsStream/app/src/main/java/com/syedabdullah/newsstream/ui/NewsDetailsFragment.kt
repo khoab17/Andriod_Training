@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.FragmentNewsDetailsBinding
+import com.syedabdullah.newsstream.viewmodel.Constant
 
 class NewsDetailsFragment : Fragment() {
     private var _binding: FragmentNewsDetailsBinding? = null
@@ -40,7 +41,7 @@ class NewsDetailsFragment : Fragment() {
         }
         binding.tvTitleNewsDetails.text = navArgs.article.title
         binding.tvDescriptionNewsDetails.text = navArgs.article.description
-        binding.dateNewsDetails.text = navArgs.article.publishedAt
+        binding.dateNewsDetails.text = Constant.dateFormat(navArgs.article.publishedAt.toString())
 
         binding.buttonContinueReading.setOnClickListener {
             val action = NewsDetailsFragmentDirections.actionNewsDetailsFragmentToWebViewFragment(navArgs.article.url!!)

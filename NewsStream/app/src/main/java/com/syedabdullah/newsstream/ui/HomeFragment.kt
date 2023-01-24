@@ -22,7 +22,7 @@ import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 class HomeFragment : Fragment() {
     private var _binding:FragmentHomeBinding? =null
     private val binding get() = _binding!!
-    private var currentTab =Constant.TOP_NEWS
+    private var currentTab =TOP_NEWS
 
     private lateinit var viewModel: NewsViewModel
 

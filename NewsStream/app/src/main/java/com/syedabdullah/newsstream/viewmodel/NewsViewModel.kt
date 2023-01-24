@@ -24,7 +24,6 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
     private val _bookmarks = MutableLiveData<List<Bookmark>>()
     val bookmarks:LiveData<List<Bookmark>> =_bookmarks
     private val repository: NewsRepository
-
     init {
         val newsDao = NewsDatabase.getDatabase(application).NewsDao()
         repository = NewsRepository(newsDao)
