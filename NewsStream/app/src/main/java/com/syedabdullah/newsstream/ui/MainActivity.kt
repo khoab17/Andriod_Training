@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private var _binding:ActivityMainBinding? = null
     private val binding get() = _binding!!
     private val viewModel: NewsViewModel by viewModels()
+    private lateinit var mConnectivityReceiver:ConnectivityReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +30,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         workManager()
+        mConnectivityReceiver = ConnectivityReceiver()
         val filter = IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
-        registerReceiver(ConnectivityReceiver(), filter)
+        registerReceiver(mConnectivityReceiver, filter)
 
         val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragmentContainer.id) as NavHostFragment
         navController = navHostFragment.navController
@@ -84,7 +86,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(ConnectivityReceiver())
+        unregisterReceiver(mConnectivityReceiver)
     }
 
 }
