@@ -7,11 +7,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.syedabdullah.newsstream.dao.NewsDatabase
+import com.syedabdullah.newsstream.database.NewsDatabase
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle
 import com.syedabdullah.newsstream.network.NewsApi
 import com.syedabdullah.newsstream.repository.NewsRepository
+import com.syedabdullah.newsstream.util.ClassConverter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -35,17 +36,17 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
     fun fetchApiNewsByCategory(category:String){
         viewModelScope.launch {
             try {
-                if(category == Constant.TOP_NEWS)
+                if(category == ClassConverter.TOP_NEWS)
                 {
                     val articles = NewsApi.retrofitService.getTopHeadlineNews().articles
-                    val newsArticle = Constant.bindAllArticleToNewsArticles(articles, Constant.TOP_NEWS)
+                    val newsArticle = ClassConverter.bindAllArticleToNewsArticles(articles, ClassConverter.TOP_NEWS)
                     repository.addAllNewsArticles(newsArticle)
                     //_articles.postValue(repository.getAllNewsArticleByCategory(Constant.TOP_NEWS))
-                    getNewsByCategory(Constant.TOP_NEWS)
+                    getNewsByCategory(ClassConverter.TOP_NEWS)
                 }
                 else{
                     val article = NewsApi.retrofitService.getNewsByCategory(category).articles
-                    val newsArticle =Constant.bindAllArticleToNewsArticles(article,category)
+                    val newsArticle = ClassConverter.bindAllArticleToNewsArticles(article,category)
                     repository.addAllNewsArticles(newsArticle)
                     //_articles.postValue(repository.getAllNewsArticleByCategory(category))
                     getNewsByCategory(category)
@@ -55,6 +56,14 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
                 Log.d(TAG, "fetchApiNewsByCategory: $e")
             }
         }
+    }
+
+    fun fetchAllNewsApi(){
+        fetchApiNewsByCategory(ClassConverter.GENERAL)
+        fetchApiNewsByCategory(ClassConverter.BUSINESS)
+        fetchApiNewsByCategory(ClassConverter.ENTERTAINMENT)
+        fetchApiNewsByCategory(ClassConverter.SPORTS)
+        fetchApiNewsByCategory(ClassConverter.TOP_NEWS)
     }
 
     //Getting data's from ROOM db============================================
@@ -96,7 +105,7 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
                     repository.updateNewsArticle(newsArticle)
                 }
                 else{
-                    val bookmark = Constant.bindNewsArticleToBookMark(newsArticle)
+                    val bookmark = ClassConverter.bindNewsArticleToBookMark(newsArticle)
                     repository.addBookmark(bookmark)
                     newsArticle.saved = true
                     repository.updateNewsArticle(newsArticle)

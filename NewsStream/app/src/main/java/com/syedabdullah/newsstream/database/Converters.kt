@@ -1,4 +1,4 @@
-package com.syedabdullah.newsstream.dao
+package com.syedabdullah.newsstream.database
 
 import androidx.room.TypeConverter
 import com.syedabdullah.newsstream.model.Source

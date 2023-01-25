@@ -1,6 +1,5 @@
-package com.syedabdullah.newsstream.dao
+package com.syedabdullah.newsstream.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle

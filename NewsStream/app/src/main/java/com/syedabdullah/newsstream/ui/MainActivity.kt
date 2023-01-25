@@ -1,21 +1,18 @@
 package com.syedabdullah.newsstream.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.work.*
-import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
+import com.syedabdullah.newsstream.broadcast.ConnectivityReceiver
 import com.syedabdullah.newsstream.databinding.ActivityMainBinding
 import com.syedabdullah.newsstream.network.InternetConnection
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.BUSINESS
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.ENTERTAINMENT
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.GENERAL
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.SPORTS
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.TOP_NEWS
+import com.syedabdullah.newsstream.util.ClassConverter.Companion.TOP_NEWS
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 import com.syedabdullah.newsstream.workers.ApiWorker
 import java.util.concurrent.TimeUnit
@@ -30,7 +27,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         workManager()
+        val filter = IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
+        registerReceiver(ConnectivityReceiver(), filter)
 
         val navHostFragment = supportFragmentManager.findFragmentById(binding.navHostFragmentContainer.id) as NavHostFragment
         navController = navHostFragment.navController
@@ -50,21 +50,16 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
+        if(InternetConnection.isOnline(this)) {
+            viewModel.fetchAllNewsApi()
+        }
+        viewModel.getNewsByCategory(TOP_NEWS)
 
-        //Checking Internet Connection when the app load the home page.
-        if(!InternetConnection.isOnline(this)){
-            Snackbar.make(binding.bottomNav,"No Internet Connection !!!", Snackbar.LENGTH_LONG).show()
-        }
-        else{
-            fetchAllNewsApi()
-            viewModel.getNewsByCategory(TOP_NEWS)
-        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
 
     private fun workManager(){
         val constraint = Constraints.Builder()
@@ -86,12 +81,10 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun fetchAllNewsApi(){
-        viewModel.fetchApiNewsByCategory(GENERAL)
-        viewModel.fetchApiNewsByCategory(BUSINESS)
-        viewModel.fetchApiNewsByCategory(ENTERTAINMENT)
-        viewModel.fetchApiNewsByCategory(SPORTS)
-        viewModel.fetchApiNewsByCategory(TOP_NEWS)
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(ConnectivityReceiver())
     }
 
 }

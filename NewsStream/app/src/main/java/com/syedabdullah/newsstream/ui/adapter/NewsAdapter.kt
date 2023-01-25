@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.model.NewsArticle
 import com.syedabdullah.newsstream.ui.HomeFragmentDirections
-import com.syedabdullah.newsstream.viewmodel.Constant
+import com.syedabdullah.newsstream.util.ClassConverter
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 class NewsAdapter(
@@ -36,7 +36,7 @@ class NewsAdapter(
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         holder.title.text = arrayList[position].title
         holder.description.text = arrayList[position].description
-        holder.date.text = Constant.dateFormat(arrayList[position].publishedAt.toString())
+        holder.date.text = ClassConverter.dateFormat(arrayList[position].publishedAt.toString())
 
         if(arrayList[position].urlToImage !=null ){
             Glide.with(holder.itemView.context)

@@ -1,7 +1,9 @@
-package com.syedabdullah.newsstream.dao
+package com.syedabdullah.newsstream.database
 
 import android.content.Context
-import androidx.room.*
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.model.NewsArticle
 

@@ -12,15 +12,14 @@ import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.lifecycle.viewModelScope
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.syedabdullah.newsstream.R
-import com.syedabdullah.newsstream.dao.NewsDatabase
+import com.syedabdullah.newsstream.database.NewsDatabase
 import com.syedabdullah.newsstream.network.NewsApi
 import com.syedabdullah.newsstream.repository.NewsRepository
 import com.syedabdullah.newsstream.ui.MainActivity
-import com.syedabdullah.newsstream.viewmodel.Constant
+import com.syedabdullah.newsstream.util.ClassConverter
 import kotlinx.coroutines.*
 
 class ApiWorker(private val context: Context, private val workerParams: WorkerParameters) :
@@ -105,26 +104,26 @@ class ApiWorker(private val context: Context, private val workerParams: WorkerPa
 
     //Apis calls
     private fun fetchAllNewsApi(){
-        fetchApiNewsByCategory(Constant.GENERAL)
-        fetchApiNewsByCategory(Constant.BUSINESS)
-        fetchApiNewsByCategory(Constant.ENTERTAINMENT)
-        fetchApiNewsByCategory(Constant.SPORTS)
-        fetchApiNewsByCategory(Constant.TOP_NEWS)
+        fetchApiNewsByCategory(ClassConverter.GENERAL)
+        fetchApiNewsByCategory(ClassConverter.BUSINESS)
+        fetchApiNewsByCategory(ClassConverter.ENTERTAINMENT)
+        fetchApiNewsByCategory(ClassConverter.SPORTS)
+        fetchApiNewsByCategory(ClassConverter.TOP_NEWS)
     }
 
     @OptIn(DelicateCoroutinesApi::class)
     fun fetchApiNewsByCategory(category:String){
         GlobalScope.launch {
             try {
-                if(category == Constant.TOP_NEWS)
+                if(category == ClassConverter.TOP_NEWS)
                 {
                     val articles = NewsApi.retrofitService.getTopHeadlineNews().articles
-                    val newsArticle = Constant.bindAllArticleToNewsArticles(articles, Constant.TOP_NEWS)
+                    val newsArticle = ClassConverter.bindAllArticleToNewsArticles(articles, ClassConverter.TOP_NEWS)
                     repository.addAllNewsArticles(newsArticle)
                 }
                 else{
                     val article = NewsApi.retrofitService.getNewsByCategory(category).articles
-                    val newsArticle =Constant.bindAllArticleToNewsArticles(article,category)
+                    val newsArticle = ClassConverter.bindAllArticleToNewsArticles(article,category)
                     repository.addAllNewsArticles(newsArticle)
 
                 }

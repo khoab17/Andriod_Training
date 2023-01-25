@@ -1,13 +1,11 @@
 package com.syedabdullah.newsstream.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.syedabdullah.newsstream.R
-import com.syedabdullah.newsstream.databinding.FragmentNewsFeedBinding
 import com.syedabdullah.newsstream.databinding.FragmentWebViewBinding
 
 class WebViewFragment : Fragment() {

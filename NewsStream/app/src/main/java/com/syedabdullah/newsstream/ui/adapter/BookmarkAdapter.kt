@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.model.Bookmark
 import com.syedabdullah.newsstream.ui.BookmarkFragmentDirections
-import com.syedabdullah.newsstream.viewmodel.Constant
+import com.syedabdullah.newsstream.util.ClassConverter
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 class BookmarkAdapter(private val bookmarks: List<Bookmark>, private val viewModel:NewsViewModel)
@@ -43,12 +43,13 @@ class BookmarkAdapter(private val bookmarks: List<Bookmark>, private val viewMod
             .into(holder.image)
 
         holder.itemView.setOnClickListener {
-            val action = BookmarkFragmentDirections.actionBookmarkFragmentToNewsDetailsFragment(Constant.bindBookmarkToNewsArticle(bookmark = bookmarks[position]))
+            val action = BookmarkFragmentDirections.actionBookmarkFragmentToNewsDetailsFragment(
+                ClassConverter.bindBookmarkToNewsArticle(bookmark = bookmarks[position]))
             holder.itemView.findNavController().navigate(action)
         }
 
         holder.itemView.setOnLongClickListener {
-            viewModel.addOrRemoveBookmark(Constant.bindBookmarkToNewsArticle(bookmarks[position]))
+            viewModel.addOrRemoveBookmark(ClassConverter.bindBookmarkToNewsArticle(bookmarks[position]))
             Snackbar.make(holder.itemView,"News removed from bookmarks!", Snackbar.LENGTH_SHORT).show()
             true
         }

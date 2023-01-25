@@ -1,12 +1,9 @@
 package com.syedabdullah.newsstream.repository
 
-import androidx.lifecycle.LiveData
 import androidx.room.Query
-import com.syedabdullah.newsstream.dao.NewsDao
+import com.syedabdullah.newsstream.database.NewsDao
 import com.syedabdullah.newsstream.model.Bookmark
-import com.syedabdullah.newsstream.model.News
 import com.syedabdullah.newsstream.model.NewsArticle
-import java.util.Locale.Category
 
 class NewsRepository(private val newsDao: NewsDao) {
     //Crud for news_article===============================

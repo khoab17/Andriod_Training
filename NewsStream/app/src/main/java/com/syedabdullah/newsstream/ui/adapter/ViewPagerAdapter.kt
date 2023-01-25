@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.syedabdullah.newsstream.ui.NewsFeedFragment
-import com.syedabdullah.newsstream.viewmodel.Constant
+import com.syedabdullah.newsstream.util.ClassConverter
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 
@@ -24,16 +24,16 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, p
         val bundle = Bundle()
         when (position){
             0->{
-                bundle.putString("selected_category",Constant.TOP_NEWS)
+                bundle.putString("selected_category", ClassConverter.TOP_NEWS)
             }1->{
-            bundle.putString("selected_category",Constant.GENERAL)
+            bundle.putString("selected_category", ClassConverter.GENERAL)
             }2->{
-                bundle.putString("selected_category",Constant.BUSINESS)
+                bundle.putString("selected_category", ClassConverter.BUSINESS)
             }3->{
-                bundle.putString("selected_category",Constant.ENTERTAINMENT)
+                bundle.putString("selected_category", ClassConverter.ENTERTAINMENT)
             }
             else->{
-                bundle.putString("selected_category",Constant.SPORTS)
+                bundle.putString("selected_category", ClassConverter.SPORTS)
             }
         }
         val fragment = NewsFeedFragment()

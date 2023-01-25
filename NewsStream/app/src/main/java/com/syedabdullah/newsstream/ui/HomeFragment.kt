@@ -10,12 +10,11 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.syedabdullah.newsstream.R
 import com.syedabdullah.newsstream.databinding.FragmentHomeBinding
 import com.syedabdullah.newsstream.ui.adapter.ViewPagerAdapter
-import com.syedabdullah.newsstream.viewmodel.Constant
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.BUSINESS
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.ENTERTAINMENT
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.GENERAL
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.SPORTS
-import com.syedabdullah.newsstream.viewmodel.Constant.Companion.TOP_NEWS
+import com.syedabdullah.newsstream.util.ClassConverter.Companion.BUSINESS
+import com.syedabdullah.newsstream.util.ClassConverter.Companion.ENTERTAINMENT
+import com.syedabdullah.newsstream.util.ClassConverter.Companion.GENERAL
+import com.syedabdullah.newsstream.util.ClassConverter.Companion.SPORTS
+import com.syedabdullah.newsstream.util.ClassConverter.Companion.TOP_NEWS
 import com.syedabdullah.newsstream.viewmodel.NewsViewModel
 
 
@@ -48,11 +47,26 @@ class HomeFragment : Fragment() {
         viewPage.adapter = tabAdapter
         TabLayoutMediator(tabLayout, viewPage) { tab, position ->
             when (position){
-                0->tab.text = "Top News"
-                1->tab.text = "General"
-                2->tab.text="Business"
-                3->tab.text="Entertainment"
-                else->tab.text="Sports"
+                0-> {
+                    tab.text = "Top News"
+                    tab.setIcon(R.drawable.ic_baseline_newspaper_24)
+                }
+                1-> {
+                    tab.text = "General"
+                    tab.setIcon(R.drawable.ic_baseline_general_24)
+                }
+                2-> {
+                    tab.text = "Business"
+                    tab.setIcon(R.drawable.ic_baseline_business_center_24)
+                }
+                3-> {
+                    tab.text = "Entertainment"
+                    tab.setIcon(R.drawable.ic_baseline_local_movies_24)
+                }
+                else-> {
+                    tab.text = "Sports"
+                    tab.setIcon(R.drawable.ic_baseline_sports_cricket_24)
+                }
             }
         }.attach()
 
@@ -98,13 +112,16 @@ class HomeFragment : Fragment() {
         val searchView = item?.actionView as SearchView
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                viewModel.searchNews(query.toString())
+
                 return false
             }
 
             override fun onQueryTextChange(newText: String): Boolean {
                 if(newText.isEmpty()){
                     viewModel.getNewsByCategory(currentTab)
+                }
+                else{
+                    viewModel.searchNews(newText.toString())
                 }
                 return true
             }
