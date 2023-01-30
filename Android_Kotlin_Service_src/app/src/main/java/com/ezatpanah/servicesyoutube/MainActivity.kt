@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         smsReceiver = SmsReceiver()
         val smsFilter = IntentFilter("android.provider.Telephony.SMS_RECEIVED")
-        registerReceiver(mConnectivityReceiver, smsFilter)
+        registerReceiver(smsReceiver, smsFilter)
 
 
     }
@@ -30,26 +30,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         unregisterReceiver(mConnectivityReceiver)
+        unregisterReceiver(smsReceiver)
     }
-
-
-
-
-
-
-       /* binding.apply {
-            btnStart.setOnClickListener {
-                startService(Intent(this@MainActivity,HelloService::class.java))
-            }
-
-            btnStop.setOnClickListener {
-                stopService(Intent(this@MainActivity,HelloService::class.java))
-            }
-        }
-        Intent(this, HelloService::class.java).also { intent ->
-            val demo =startService(intent)
-        }
-*/
-
-
 }

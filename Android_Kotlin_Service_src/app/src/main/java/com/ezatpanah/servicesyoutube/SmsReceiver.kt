@@ -6,17 +6,22 @@ import android.content.Intent
 import android.telephony.SmsMessage
 import android.widget.Toast
 
-class SmsReceiver() :BroadcastReceiver(){
+class SmsReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         val bundle = intent.extras
-        val pdus = bundle?.get("pdus") as Array<*>
-        for (i in pdus.indices) {
-            val smsMessage = SmsMessage.createFromPdu(pdus[i] as ByteArray)
-            val sender = smsMessage.originatingAddress
-            val messageBody = smsMessage.messageBody
-            Toast.makeText(context, "$messageBody", Toast.LENGTH_SHORT).show()
+        try {
+            if (bundle != null) {
+                val pdus = bundle.get("pdus") as Array<*>
+                for (i in pdus.indices) {
+                    val smsMessage = SmsMessage.createFromPdu(pdus[i] as ByteArray)
+                    val phoneNumber = smsMessage.displayOriginatingAddress
+                    val message = smsMessage.messageBody
+                    Toast.makeText(context, "From: $phoneNumber\nMessage: $message", Toast.LENGTH_SHORT).show()
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
-
 }
